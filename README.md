@@ -1,4 +1,4 @@
-# Proyecto2_Entrega1
+Proyecto 2   (Entrega 1)
 
 Integrantes:
 
