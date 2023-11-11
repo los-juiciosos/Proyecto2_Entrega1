@@ -39,7 +39,7 @@ public class EscogerSede extends JPanel implements MetodosAuxiliares, ActionList
 	
 	public void addBotones() {
 		
-		for (String sede : principal.rentadora.getSedes()) {
+		for (String sede : principal.cargaArchivos.cargarSedes()) {
 			
 			GridBagConstraints gbc = new GridBagConstraints();
 	        gbc.gridwidth = GridBagConstraints.REMAINDER;

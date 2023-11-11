@@ -24,15 +24,10 @@ import javax.swing.border.EmptyBorder;
 public class Login extends JPanel implements MetodosAuxiliares {
 	
 	private Principal principal;
-	
 	private JLabel nombreEmpresa;
-	
 	private JLabel bienvenida;
-	
 	private JTextField usuario;
-	
 	private JTextField password;
-	
 	private JButton ingresar;
 	
 	public Login (Principal principal) {

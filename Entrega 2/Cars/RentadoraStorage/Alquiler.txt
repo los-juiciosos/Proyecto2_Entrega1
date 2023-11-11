@@ -1,4 +1,4 @@
 #
-#Thu Nov 09 15:29:47 COT 2023
-WOT712\ 1Guido=12/10/2022;13/10/2023;13/10/2022;9\:00;WOT712;RadiatorSpring;RadiatorSpring;252000.0;false
+#Sun Oct 22 23:05:07 COT 2023
+KYC321\ 1Guido=12/10/2022;9\:00;15/10/2022;17\:00;KYC321;RadiatorSpring;RadiatorSpring;180400.0;true
 PRT712\ 1Guido=12/10/2022;9\:00;15/10/2022;14\:00;PRT712;RadiatorSpring;CarburetorCanyon;176000.0;true

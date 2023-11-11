@@ -40,31 +40,23 @@ import Interfaz.Admin_Local.ConsolaAdminLocal;
 import Interfaz.Cliente.EscogerSede;
 import Interfaz.Empleados.EmpleadoInventario;
 import Interfaz.Empleados.EmpleadoMostrador;
-import Modelo.Rentadora;
-
+import RentadoraModelo.CargaArchivos;
 
 public class Principal extends JFrame implements EventListener {
 	
-	public Rentadora rentadora;
-	
+	public CargaArchivos cargaArchivos;
 	private Login login;
-	
 	private ConsolaAdminGeneral consolaAdminGeneral;
-	
 	private ConsolaAdminLocal consolaAdminLocal;
-	
 	private EmpleadoInventario empleadoInventario;
-	
 	private EmpleadoMostrador empleadoMostrador;
-	
 	private EscogerSede escogerSede;
-	
 	public static final Color globalTheme = new Color(227, 36, 43); //El color base de la aplicacion 
 	
 	public Principal() {
 		
-		//MODELO
-		this.rentadora = new Rentadora();
+		//MODELO CARGA ARCHIVOS
+		this.cargaArchivos = new CargaArchivos();
 		
 		//PANELES (unicos paneles no cambiar!)
 		this.escogerSede = new EscogerSede(this);
@@ -75,7 +67,7 @@ public class Principal extends JFrame implements EventListener {
 		this.empleadoMostrador = new EmpleadoMostrador(this);
 		
 		//Diseño	
-		setTitle("Alquiler y Reservas del Rayo Mc Queen");
+		setTitle("Alquiler y Reservas de CUCHAU MOTORS");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

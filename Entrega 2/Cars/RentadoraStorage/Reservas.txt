@@ -1,2 +1,3 @@
 #
-#Thu Nov 09 15:29:47 COT 2023
+#Sun Oct 22 23:03:59 COT 2023
+2Guido=16/10/2022;9\:00;18/10/2022;10\:00;WOT712;RadiatorSpring;RadiatorSpring;124000.0
