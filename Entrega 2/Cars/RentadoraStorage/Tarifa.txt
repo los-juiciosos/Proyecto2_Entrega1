@@ -1,0 +1,6 @@
+lujo=120000
+clasico=100000
+todoterreno=80000
+vans=60000
+tractor=40000
+suv=30000

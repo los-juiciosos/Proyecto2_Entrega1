@@ -1,0 +1,3 @@
+#
+#Sun Oct 22 19:55:18 COT 2023
+EQR485=EQR485;renault;duster;negro;manual;gasolina;5;false;false;RadiatorSpring;vans

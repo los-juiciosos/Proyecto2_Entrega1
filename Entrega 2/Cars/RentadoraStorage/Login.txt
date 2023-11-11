@@ -1,0 +1,7 @@
+#
+#Thu Nov 09 15:29:47 COT 2023
+Mate=To_mate_sin_el_to;Mate;1957/01/12;EstadosUnidos;014785;mate.jpg;RadiatorSpring;true;local
+Rayo=CUCHAU;Rayo;2000/05/26;EstadosUnidos;134098;Rayo.jpg;RadiatorSpring;true;mostrador
+Sally=Porsche_lover;Sally;1994/02/27;Alemania;01125;sally.jpg;RadiatorSpring;true;inventario
+DocHudson=Cadillac_supremacy;Hudson;1925/01/26;EstadosUnidos;0258654;https\://static.wikia.nocookie.net/el-mundo-de-cars/images/6/61/Fab_Hudson_Hornet.png/revision/latest/scale-to-width/360?cb\=20230623021532&path-prefix\=es;general
+Guido=A_los_pits;Guido;1989/06/14;Italia;1492384;guido.jpg;3248748623;guido_pits@yahoo.com;credito;14785236995;06/29;1492384;Colombia;2032/12/29;false;cliente
