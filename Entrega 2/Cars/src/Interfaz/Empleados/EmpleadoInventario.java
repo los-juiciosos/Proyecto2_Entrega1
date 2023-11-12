@@ -2,7 +2,7 @@ package Interfaz.Empleados;
 
 import javax.swing.JPanel;
 
-import Interfaz.Principal;
+import Interfaz.Principal.Principal;
 
 public class EmpleadoInventario extends JPanel {
 	

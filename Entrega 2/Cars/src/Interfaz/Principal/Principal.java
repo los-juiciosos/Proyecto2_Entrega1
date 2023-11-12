@@ -1,4 +1,4 @@
-package Interfaz;
+package Interfaz.Principal;
 
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
@@ -40,6 +40,7 @@ import Interfaz.Admin_Local.ConsolaAdminLocal;
 import Interfaz.Cliente.EscogerSede;
 import Interfaz.Empleados.EmpleadoInventario;
 import Interfaz.Empleados.EmpleadoMostrador;
+import Interfaz.Login.Login;
 import RentadoraModelo.CargaArchivos;
 
 public class Principal extends JFrame implements EventListener {
@@ -51,20 +52,12 @@ public class Principal extends JFrame implements EventListener {
 	private EmpleadoInventario empleadoInventario;
 	private EmpleadoMostrador empleadoMostrador;
 	private EscogerSede escogerSede;
+	
 	public static final Color globalTheme = new Color(227, 36, 43); //El color base de la aplicacion 
+	private CardLayout cardLayout;
+	private JPanel mainPanel;
 	
 	public Principal() {
-		
-		//MODELO CARGA ARCHIVOS
-		this.cargaArchivos = new CargaArchivos();
-		
-		//PANELES (unicos paneles no cambiar!)
-		this.escogerSede = new EscogerSede(this);
-		this.login = new Login(this);
-		this.consolaAdminLocal = new ConsolaAdminLocal(this);
-		this.consolaAdminGeneral = new ConsolaAdminGeneral(this);
-		this.empleadoInventario = new EmpleadoInventario(this);
-		this.empleadoMostrador = new EmpleadoMostrador(this);
 		
 		//Diseño	
 		setTitle("Alquiler y Reservas de CUCHAU MOTORS");
@@ -77,6 +70,22 @@ public class Principal extends JFrame implements EventListener {
 		
 		setLayout(new BorderLayout());
 		
+		this.cargaArchivos = new CargaArchivos();
+		
+		//Paneles
+		mainPanel = new JPanel();
+		add(mainPanel, BorderLayout.CENTER);
+        cardLayout = new CardLayout();
+        mainPanel.setLayout(cardLayout); //para cambiar entre ventanas
+		
+		//PANELES (unicos paneles no cambiar!)
+		this.escogerSede = new EscogerSede(this);
+		this.login = new Login(this);
+		this.consolaAdminLocal = new ConsolaAdminLocal(this);
+		this.consolaAdminGeneral = new ConsolaAdminGeneral(this);
+		this.empleadoInventario = new EmpleadoInventario(this);
+		this.empleadoMostrador = new EmpleadoMostrador(this);
+		
         BufferedImage originalImage; //LOGO DE CARS
 		try {
 			originalImage = ImageIO.read(new File("./imagenes/carsLogo.png"));
@@ -86,33 +95,32 @@ public class Principal extends JFrame implements EventListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		//Paneles
-		
-//		JPanel mainPanel = new JPanel();
-//        
-//        CardLayout cardLayout = new CardLayout();
-//        mainPanel.setLayout(cardLayout); //para cambiar entre ventanas
-//		
-//		mainPanel.add(login,"login");
-//		
-        //cardLayout.show(mainPanel,"login");
         
-		//add(mainPanel, BorderLayout.CENTER);
-		
-//		add(login);
-		
-		add(escogerSede);
+		mainPanel.add(login,"login");
+		mainPanel.add(escogerSede,"escogerSede");
+		mainPanel.add(consolaAdminLocal,"consolaAdminLocal");
+		mainPanel.add(consolaAdminGeneral,"consolaAdminGeneral");
+		mainPanel.add(empleadoInventario,"empleadoInventario");
+		mainPanel.add(empleadoMostrador,"empleadoMostrador");
 		
 		centerWindow();
 		
         pack();
         
+        cardLayout.show(mainPanel,"login");
+        
 		setVisible(true);
 		
 //		login.requestFocus(null);
 		
+	}
+	
+	public void cambiarPanel(String panel){
+		cardLayout.show(mainPanel,panel);
+	}
+	
+	public void addPanel(JPanel panel, String name) {
+		mainPanel.add(panel,name);
 	}
 	
 	public void centerWindow() {

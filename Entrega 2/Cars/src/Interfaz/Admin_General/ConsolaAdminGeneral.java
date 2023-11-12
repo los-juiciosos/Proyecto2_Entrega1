@@ -1,10 +1,16 @@
 package Interfaz.Admin_General;
 
-import Interfaz.Principal;
+import java.awt.GridBagConstraints;
 
-public class ConsolaAdminGeneral {
+import javax.swing.JPanel;
+
+import Interfaz.Principal.Principal;
+
+public class ConsolaAdminGeneral extends JPanel {
 	
 	Principal principal;
+	
+	private GridBagConstraints gbc;
 	
 	public ConsolaAdminGeneral(Principal principal) {
 		

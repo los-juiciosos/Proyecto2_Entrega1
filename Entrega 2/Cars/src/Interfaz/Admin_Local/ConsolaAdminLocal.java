@@ -1,8 +1,10 @@
 package Interfaz.Admin_Local;
 
-import Interfaz.Principal;
+import javax.swing.JPanel;
 
-public class ConsolaAdminLocal {
+import Interfaz.Principal.Principal;
+
+public class ConsolaAdminLocal extends JPanel {
 	
 	Principal principal;
 	

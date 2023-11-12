@@ -1,4 +1,4 @@
-package Interfaz;
+package Interfaz.Principal;
 
 import java.awt.Color;
 import java.awt.Component;

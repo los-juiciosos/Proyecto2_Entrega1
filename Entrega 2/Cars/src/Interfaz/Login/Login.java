@@ -1,4 +1,4 @@
-package Interfaz;
+package Interfaz.Login;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -10,6 +10,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.Point2D;
 
 import javax.swing.Box;
@@ -21,7 +23,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class Login extends JPanel implements MetodosAuxiliares {
+import Interfaz.Principal.MetodosAuxiliares;
+import Interfaz.Principal.Principal;
+
+public class Login extends JPanel implements MetodosAuxiliares, ActionListener {
 	
 	private Principal principal;
 	private JLabel nombreEmpresa;
@@ -29,6 +34,9 @@ public class Login extends JPanel implements MetodosAuxiliares {
 	private JTextField usuario;
 	private JTextField password;
 	private JButton ingresar;
+	private JButton nuevoUsuario;
+	
+	private CrearCliente crearCliente;
 	
 	public Login (Principal principal) {
 		
@@ -57,6 +65,17 @@ public class Login extends JPanel implements MetodosAuxiliares {
 		password = new JTextField(40);
 		ponerTextitoGris(password,"Contraseña");
 		
+		ingresar = new JButton("Ingresar");
+		formatButton(ingresar);
+		ingresar.setActionCommand("INGRESAR");
+		ingresar.addActionListener(this);
+		
+		nuevoUsuario = new JButton("Crear Usuario");
+		formatButton(nuevoUsuario);
+		nuevoUsuario.setActionCommand("NUEVO");
+		nuevoUsuario.addActionListener(this);
+		
+		
 		gbc.anchor = GridBagConstraints.CENTER;
 		add(nombreEmpresa, gbc);
 		
@@ -72,15 +91,37 @@ public class Login extends JPanel implements MetodosAuxiliares {
 		addSpace(5);
 		
 		add(password, gbc);
-				
-		requestFocus(null);
 		
+		addSpace(5);
+		
+		gbc.gridheight = GridBagConstraints.REMAINDER;
+		gbc.gridwidth = gbc.gridy;
+		
+		add(ingresar, gbc);
+		
+		add(nuevoUsuario, gbc);
+				
+		requestFocus(null);	
 	}
 	
 	private void addSpace(int Yspace) {
 		GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;
 		add(Box.createRigidArea(new Dimension(0, Yspace)), gbc);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		String grito = e.getActionCommand();
+		
+		if (grito.equals("NUEVO")) {
+			crearCliente = new CrearCliente(principal);
+		} else if (grito.equals("INGRESAR")) {
+			// # TODO: dale erick
+			principal.cambiarPanel("escogerSede");
+		}
+		
 	}
 	
 	@Override
