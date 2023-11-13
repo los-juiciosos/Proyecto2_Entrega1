@@ -42,10 +42,16 @@ import Interfaz.Empleados.EmpleadoInventario;
 import Interfaz.Empleados.EmpleadoMostrador;
 import Interfaz.Login.Login;
 import RentadoraModelo.CargaArchivos;
+import RentadoraModelo.Sede;
 
 public class Principal extends JFrame implements EventListener {
 	
+	public static String usernameActual;
+	public static String idReservaActual;
+	public static Object usuarioActual;
+	public static Sede sedePresente;
 	public CargaArchivos cargaArchivos;
+	public String sedeActual;
 	private Login login;
 	private ConsolaAdminGeneral consolaAdminGeneral;
 	private ConsolaAdminLocal consolaAdminLocal;
@@ -60,13 +66,11 @@ public class Principal extends JFrame implements EventListener {
 	public Principal() {
 		
 		//Diseño	
-		setTitle("Alquiler y Reservas de CUCHAU MOTORS");
+		setTitle("CUCHAU MOTORS");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		//setResizable(false);
-		
-		//setSize(400, 300);
+		setResizable(false);
+		setSize(700, 700);
 		
 		setLayout(new BorderLayout());
 		
@@ -104,15 +108,10 @@ public class Principal extends JFrame implements EventListener {
 		mainPanel.add(empleadoMostrador,"empleadoMostrador");
 		
 		centerWindow();
-		
         pack();
-        
         cardLayout.show(mainPanel,"login");
-        
 		setVisible(true);
-		
-//		login.requestFocus(null);
-		
+				
 	}
 	
 	public void cambiarPanel(String panel){
@@ -131,7 +130,12 @@ public class Principal extends JFrame implements EventListener {
 
         setLocation(x, y);
 	}
-	
+	public void setSedeActual(String nombre) {
+		sedeActual = nombre;
+	}
+	public String getSedeActual() {
+		return sedeActual;
+	}
 	public static void main(String[] args) {
 		
 		Principal principal = new Principal();

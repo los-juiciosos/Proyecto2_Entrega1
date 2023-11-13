@@ -1017,7 +1017,7 @@ public class Consola {
 				String placaDevolver = reader.next();
 				System.out.println("Ingrese el id de su reserva");
 				String id = reader.next();
-				String entregaSuccess = clienteActual.entregarVehiculo(id,placaDevolver);
+				String entregaSuccess = clienteActual.entregarVehiculo(id,placaDevolver,"RadiatorSpring");
 				
 				if (entregaSuccess == null) {
 					System.out.println("No se encontro el alquiler a devolver que especifica");

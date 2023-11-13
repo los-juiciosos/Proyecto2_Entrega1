@@ -119,7 +119,7 @@ public class Cliente extends Usuario {
 		}
 	}	
 		
-	public String entregarVehiculo(String idReserva,String placa) {
+	public String entregarVehiculo(String idReserva,String placa, String sedeActual) {
 		
 		Properties pAlquiler = new Properties();
 		Properties pVehiculo = new Properties();
@@ -129,6 +129,8 @@ public class Cliente extends Usuario {
 		String infoAlquiler = (String) pAlquiler.get(placa + " "+idReserva);
 		String[] listaAlquiler = infoAlquiler.split(";");
 		String sedeRegreso = listaAlquiler[6];
+		if (sedeActual.equals(sedeRegreso)) {
+			
 		listaAlquiler[8] = "true";
 		
 		String registroAlquiler= String.join(";",listaAlquiler);
@@ -146,7 +148,7 @@ public class Cliente extends Usuario {
 		pUsuario.load(new FileInputStream(new File("./RentadoraStorage/Login.txt")));
 		String infoUsuario = (String) pUsuario.get(nombre);
 		String[] listaUsuario = infoUsuario.split(";");
-		listaUsuario[14] = "true";
+		listaUsuario[16] = "true";
 		String infoUpdated = String.join(";", listaUsuario);
 		pUsuario.put(nombre, infoUpdated);
 		
@@ -156,7 +158,10 @@ public class Cliente extends Usuario {
 		
 		
 		return "si";
-	
+		}
+		else {
+			return null;
+		}
 		}
 		catch (Exception e) {
 			e.printStackTrace();

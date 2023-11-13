@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Interfaz.Principal.ErrorDisplay;
 import Interfaz.Principal.MetodosAuxiliares;
 import Interfaz.Principal.Principal;
 
@@ -19,18 +20,13 @@ public class CambiarReserva extends JPanel implements MetodosAuxiliares, ActionL
 	Principal principal;
 	
 	private GridBagConstraints gbc;
-	
 	private JLabel instruccion;
-	
 	private JComboBox<String> categorias;
-	
 	private JTextField nuevoValor;
-	
 	private JButton confirmar;
-	
 	static final int textFieldSize = 20;
-	
 	static final int YSpace = 5;
+	private ErrorDisplay error;
 	
 	public CambiarReserva(Principal principal) {
 		
@@ -78,6 +74,14 @@ public class CambiarReserva extends JPanel implements MetodosAuxiliares, ActionL
 	public void actionPerformed(ActionEvent e) {
 		
 		String grito = e.getActionCommand();
+		if (nuevoValor.getText().equals("Nuevo Valor")){
+			error = new ErrorDisplay("PORFAVOR LLENE TODOS LOS CAMPOS");
+		}
+		else{
+			String aspecto = (String) categorias.getSelectedItem();
+		    String modificacion = nuevoValor.getText();
+		    principal.cargaArchivos.modificarReserva(principal.idReservaActual, aspecto, modificacion);
+		}	
 		
 		principal.cambiarPanel(grito);
 		

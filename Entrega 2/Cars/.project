@@ -14,6 +14,18 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>imagenes/error.png</name>
+			<type>1</type>
+			<location>C:/Users/erics/OneDrive/Documentos/Proyecto_2/Entrega 2/Cars/imagenes/error.png</location>
+		</link>
+		<link>
+			<name>imagenes/sonrisa.png</name>
+			<type>1</type>
+			<location>C:/Users/erics/OneDrive/Documentos/Proyecto_2/Entrega 2/Cars/imagenes/sonrisa.png</location>
+		</link>
+	</linkedResources>
 	<filteredResources>
 		<filter>
 			<id>1699730053725</id>

@@ -38,8 +38,7 @@ public class Catalogo extends JDialog {
 		
 		String[] columnNames = {"Placa", "Marca", "Modelo", 
 				"Color", "Transmision", "Tipo", 
-				"Capacidad", "Reservado", "Disponible",
-				"Sede", "Categoria"};
+				"Capacidad", "Categoria"};
 		
 		Object[][] valores = principal.cargaArchivos.cargarAutos(sede);
 		
