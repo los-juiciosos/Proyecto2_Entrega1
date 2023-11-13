@@ -43,7 +43,6 @@ public class ConsolaAdminLocal extends JPanel implements MetodosAuxiliares, Acti
 		
 		this.registrarTrabajador = new RegistrarTrabajador(principal);
 		this.modificarTrabajador = new ModificarTrabajador(principal);
-		this.crearCliente = new CrearCliente(principal);
 		
 		principal.addPanel(registrarTrabajador, "registrarTrabajador" );
 		principal.addPanel(modificarTrabajador, "modificarTrabajador" );
@@ -116,7 +115,13 @@ public class ConsolaAdminLocal extends JPanel implements MetodosAuxiliares, Acti
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		String grito = e.getActionCommand();
+		
+		if (grito.equals("crearCliente")) {
+			this.crearCliente = new CrearCliente(principal);
+		}else {
+			principal.cambiarPanel(grito);
+		}
 		
 	}
 

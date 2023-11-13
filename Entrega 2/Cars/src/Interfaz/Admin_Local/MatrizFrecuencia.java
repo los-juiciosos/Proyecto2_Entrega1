@@ -18,9 +18,13 @@ import javax.swing.border.EmptyBorder;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.WeekFields;
 import java.util.Locale;
+import java.util.Set;
+import java.util.Map.Entry;
 
 import Interfaz.Principal.MetodosAuxiliares;
 import Interfaz.Principal.Principal;
@@ -74,6 +78,35 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 	
 	public void pintarCuadricula() {
 		
+		WeekFields weekFields = WeekFields.of(Locale.getDefault());
+		
+		Set<Entry<Object, Object>> entrySet = principal.cargaArchivos.cargarReserva().entrySet();
+		
+		
+        for (Entry<Object, Object> entry : entrySet) {
+            String valores = (String) entry.getValue();
+            String[] datos = valores.split(";");
+            
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            
+            LocalDate fechaInicial = LocalDate.parse(datos[0], dateFormatter);
+            LocalDate fechaFinal = LocalDate.parse(datos[2], dateFormatter);
+            
+            LocalDate currentDate = fechaInicial;
+            while (!currentDate.isAfter(fechaFinal)) {
+            	
+            	int semana = currentDate.get(weekFields.weekOfWeekBasedYear())- 1;
+            	
+            	int diaDeLaSemana = currentDate.getDayOfWeek().getValue()%7;
+            	
+            	cuadricula[diaDeLaSemana][semana]++;
+            	
+            	currentDate = currentDate.plus(1, ChronoUnit.DAYS);
+                
+            }
+        }
+		
+		
 	}
 	
 	
@@ -122,10 +155,15 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 					 GradientPaint gradient = new GradientPaint(start, cutePurple, end, cuteYellow);
 					 g2d.setPaint(gradient);
 					
-				} else {
+				} else if (frecuencia < 3){
 					Point2D start = new Point2D.Float(x, y); // Starting point of the gradient
 					Point2D end = new Point2D.Float((float)start.getX()+gridSize, (float)start.getY()+gridSize);
 					GradientPaint gradient = new GradientPaint(start, Color.BLACK, end, Color.WHITE);
+					g2d.setPaint(gradient);
+				} else {
+					Point2D start = new Point2D.Float(x, y); // Starting point of the gradient
+					Point2D end = new Point2D.Float((float)start.getX()+gridSize, (float)start.getY()+gridSize);
+					GradientPaint gradient = new GradientPaint(start, Color.RED, end, Color.BLUE);
 					g2d.setPaint(gradient);
 				}
 				
@@ -140,7 +178,7 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 		
 		frame.setLayout(new BorderLayout());
 		
-		frame.add(new MatrizFrecuencia(null), BorderLayout.CENTER);
+//		frame.add(new MatrizFrecuencia(null), BorderLayout.CENTER);
 		
 		frame.pack();
 				

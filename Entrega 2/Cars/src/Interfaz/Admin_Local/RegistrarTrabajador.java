@@ -68,7 +68,6 @@ public class RegistrarTrabajador extends JPanel implements MetodosAuxiliares, Ac
 		JLabel instruccion = new JLabel("Datos Personales");
 		subTitleText(instruccion);
 		add(instruccion,gbc);
-		gbc.gridy++;
         
         String[] campos = {"Nombre completo", "Fecha de nacimiento (dd/mm/YYYY)", "Nacionalidad", 
                 "No. Documento de identidad"};
@@ -78,7 +77,6 @@ public class RegistrarTrabajador extends JPanel implements MetodosAuxiliares, Ac
             ponerTextitoGris(campo, mensaje);
             addSpace(YSpace);
             add(campo,gbc);
-            gbc.gridy++;
 		}
         
         JButton fotoDocumento = new JButton("Foto Documento");
@@ -97,7 +95,6 @@ public class RegistrarTrabajador extends JPanel implements MetodosAuxiliares, Ac
 	
 	private void addSpace(int Yspace) {
 		add(Box.createRigidArea(new Dimension(0, Yspace)), gbc);
-		gbc.gridy++;
 	}
 
 }
