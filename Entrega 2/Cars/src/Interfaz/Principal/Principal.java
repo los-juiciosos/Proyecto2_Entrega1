@@ -42,9 +42,14 @@ import Interfaz.Empleados.EmpleadoInventario;
 import Interfaz.Empleados.EmpleadoMostrador;
 import Interfaz.Login.Login;
 import RentadoraModelo.CargaArchivos;
+import RentadoraModelo.Sede;
 
 public class Principal extends JFrame implements EventListener {
 	
+	public static String usernameActual;
+	public static String idReservaActual;
+	public static Object usuarioActual;
+	public static Sede sedePresente;
 	public CargaArchivos cargaArchivos;
 	public String sedeActual;
 	private Login login;

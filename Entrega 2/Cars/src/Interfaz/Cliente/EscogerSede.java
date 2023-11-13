@@ -15,10 +15,12 @@ import javax.swing.border.EmptyBorder;
 
 import Interfaz.Principal.MetodosAuxiliares;
 import Interfaz.Principal.Principal;
+import RentadoraModelo.Cliente;
 
 public class EscogerSede extends JPanel implements MetodosAuxiliares, ActionListener {
 	
 	Principal principal;
+	public  Cliente clienteActual;
 	private GridBagConstraints gbc;
 	private Catalogo catalogo;
 	private MenuCliente menuCliente;
@@ -62,9 +64,8 @@ public class EscogerSede extends JPanel implements MetodosAuxiliares, ActionList
 		setSize(500, 500);
 		
 		setBorder(new EmptyBorder(40, 40, 40, 40)); //PARA PONER MARGENES
-		
+        
 		addBotones();
-		
 		addCatalogos();
 		
 	}
@@ -74,6 +75,7 @@ public class EscogerSede extends JPanel implements MetodosAuxiliares, ActionList
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.gridx = 0;
         gbc.gridy = 0;
+                
         
         logOut = new JButton("LOG OUT");
 		formatButton(logOut);
@@ -134,6 +136,7 @@ public class EscogerSede extends JPanel implements MetodosAuxiliares, ActionList
 			
 		} else {
 			principal.setSedeActual(grito.replace("!", ""));
+			principal.sedePresente = principal.cargaArchivos.cargarSedeIndiv(grito.replace("!", ""));
 			principal.cambiarPanel("menuCliente");
 			
 		} 

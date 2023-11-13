@@ -131,6 +131,7 @@ public class CrearCliente extends JDialog implements MetodosAuxiliares,ActionLis
         	JTextField campo = new JTextField(textFieldSize);
             ponerTextitoGris(campo, mensaje);
             addSpace(YSpace);
+        	listaCampos.add(campo);
             add(campo,gbc);
             gbc.gridy++;
 		}

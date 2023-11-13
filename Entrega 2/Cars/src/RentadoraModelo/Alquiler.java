@@ -78,7 +78,7 @@ public class Alquiler {
 			pUsuario.load(new FileInputStream(new File("./RentadoraStorage/Login.txt")));
 			String infoUsuario = (String) pUsuario.get(nombre);
 			String[] listaUsuario = infoUsuario.split(";");
-			listaUsuario[14] = "false";
+			listaUsuario[16] = "false";
 			String infoUpdated = String.join(";", listaUsuario);
 			pUsuario.put(nombre, infoUpdated);
 			guardarLogin(pUsuario,"Login");

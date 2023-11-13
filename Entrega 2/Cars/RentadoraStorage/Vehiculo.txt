@@ -1,6 +1,6 @@
 #
-#Sun Oct 22 23:16:19 COT 2023
-AEW123=AEW123;chevrolet;aveo;gris;automatica;corriente;5;false;true;RadiatorSpring;suv
+#Mon Nov 13 12:58:16 COT 2023
+AEW123=AEW123;chevrolet;aveo;gris;automatica;corriente;5;true;false;RadiatorSpring;suv
 AOD043=AOD043;ford;fusion;magenta;automatica;electrico;4;false;true;Emeryville;clasico
 EQR485=EQR485;renault;duster;negro;manual;gasolina;5;false;false;RadiatorSpring;vans
 FGH897=FGH897;jeep;tundra;azul;automatica;hibrido;6;false;true;CarburetorCanyon;todoterreno
@@ -9,13 +9,13 @@ FUC109=FUC109;renault;twingo;gris;automatica;electrico;5;false;true;Emeryville;s
 HER198=HER198;mazda;mazda3;naranja;automatica;gasolina;4;false;true;CarburetorCanyon;suv
 IEG862=IEG862;honda;wave;rojo;automatico;gasolina;4;false;true;MotorSpeedway;clasico
 IEW862=IEW862;renault;hurus;amarillo;manual;gasolina;4;false;true;MotorSpeedway;suv
-KYC321=KYC321;volkswagen;terra;rojo;manual;corriente;4;true;false;RadiatorSpring;clasico
+KYC321=KYC321;volkswagen;terra;rojo;manual;corriente;4;false;false;RadiatorSpring;clasico
 LAA743=LAA743;kia;contemporaneo;rosa;manual;gasolina;8;false;true;CarburetorCanyon;tractor
 PRT712=PRT712;fresky;rock;violeta;manual;gasolina;5;false;true;CarburetorCanyon;todoterreno
 QTU753=QTU753;bmw;x5;azul;automatica;hibrido;5;false;true;CarburetorCanyon;clasico
 URN738=URN738;chevrolet;giant;negro;automatico;gasolina;8;false;true;MotorSpeedway;vans
 URN739=URN739;ferrari;huracan;rojo;automatico;gasolina;4;false;true;MotorSpeedway;lujo
-WOT712=WOT712;foton;trend;rosa;manual;gasolina;8;true;true;RadiatorSpring;lujo
+WOT712=WOT712;foton;trend;rosa;manual;gasolina;8;false;true;RadiatorSpring;lujo
 WXY000=WXY000;tesla;yamaha;gris;automatica;electrico;5;false;true;Emeryville;lujo
 WXY001=WXY001;kia;strong;negra;automatica;electrico;8;false;true;Emeryville;vans
 YXW111=YXW111;yamaha;native;azul;automatica;gasolina;5;false;false;RadiatorSpring;todoterreno

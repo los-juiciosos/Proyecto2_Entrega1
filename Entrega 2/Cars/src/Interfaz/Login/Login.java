@@ -28,6 +28,7 @@ import Interfaz.Principal.ErrorDisplay;
 import Interfaz.Principal.MetodosAuxiliares;
 import Interfaz.Principal.Principal;
 import Interfaz.Principal.Verify;
+import RentadoraModelo.Cliente;
 
 public class Login extends JPanel implements MetodosAuxiliares, ActionListener {
 	
@@ -130,19 +131,25 @@ public class Login extends JPanel implements MetodosAuxiliares, ActionListener {
 			
 			if (verify == true) {		
 				String rol = verifyLogin.getRol(pLogin, user);
+				principal.usernameActual = user;
 				if (rol.equals("cliente")) {
+					principal.usuarioActual = principal.cargaArchivos.cargarCliente(pLogin,user);
 					principal.cambiarPanel("escogerSede");
 				}
 				else if (rol.equals("general")) {
+					principal.usuarioActual = principal.cargaArchivos.cargarGeneral(pLogin, user);
 					principal.cambiarPanel("consolaAdminGeneral");
 				}
 				else if (rol.equals("local")) {
+					principal.usuarioActual = principal.cargaArchivos.cargarLocal(pLogin, user);
 					principal.cambiarPanel("consolaAdminLocal");
 				}
 				else if (rol.equals("mostrador")) {
+					principal.usuarioActual = principal.cargaArchivos.cargarMostrador(pLogin, user);
 					principal.cambiarPanel("empleadoMostrador");
 				}
 				else if (rol.equals("inventario")) {
+					principal.usuarioActual = principal.cargaArchivos.cargarEmpInventario(pLogin, user);
 					principal.cambiarPanel("empleadoInventario");
 				}
 			}

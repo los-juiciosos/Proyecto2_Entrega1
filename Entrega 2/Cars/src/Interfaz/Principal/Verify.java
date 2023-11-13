@@ -1,11 +1,16 @@
 package Interfaz.Principal;
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Properties;
 import java.util.Set;
 
 import javax.swing.JFileChooser;
+
+import RentadoraModelo.Sede;
 
 public class Verify{
 	
@@ -59,6 +64,21 @@ public class Verify{
 		
 	}
 	
+public boolean verifyIdReserva(Properties pReserva, String id,String sedeActual) {
+		boolean verify = false;
+		Set<Object> llavesLogin = pReserva.keySet();
+		if (llavesLogin.contains(id)) {
+			String infoLogin = (String) pReserva.get(id);
+			String[] listaInfoLogin = infoLogin.split(";");
+			String mensaje = listaInfoLogin[5];
+			
+			if (mensaje.equals(sedeActual)) {
+				verify = true;
+			}
+		}
+		return verify;
+	}
+	
 	public boolean verifyLleno(ArrayList<String> listaInfo) {
 		boolean verify = true;
 		for (String dato: listaInfo) {
@@ -71,6 +91,53 @@ public class Verify{
 		}
 		return verify;
 	}
+	
+	public boolean verifyTarjetaBloqueada(Properties pLogin, String user) {
+		
+		boolean verify = true;
+		
+		Set<Object> llavesLogin = pLogin.keySet();
+		if (llavesLogin.contains(user)) {
+			String infoLogin = (String) pLogin.get(user);
+			String[] listaInfoLogin = infoLogin.split(";");
+			String mensaje = listaInfoLogin[16];
+			if (mensaje.equals("false")) {
+				verify = false;
+			}
+		}
+		
+		return verify;
+	}
+	
+	public boolean verifyFechaValida(Sede sede, String horaLlegada , String horaDevolucion) {
+		boolean revisar = true;
+		String horaInicio = sede.getHoraApertura();
+		String horaCierre = sede.getHoraCierre();
+		
+		try {
+            SimpleDateFormat sdf = new SimpleDateFormat("mm:HH");
+            Date startTime = sdf.parse(horaInicio);
+            Date endTime = sdf.parse(horaCierre);
+            Date checkTime = sdf.parse(horaLlegada);
+            Date checkDevolTime = sdf.parse(horaDevolucion);
+
+            if (checkTime.after(startTime) && checkTime.before(endTime)) {
+            	if (checkDevolTime.after(startTime) && checkDevolTime.before(endTime)) {
+                    revisar = true;
+                } else {
+                	revisar = false;
+                }
+            } else {
+            	revisar = false;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+		
+		return revisar;
+	}
+	
+	
 	
 	
 	

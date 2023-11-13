@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class Notificacion extends JDialog implements MetodosAuxiliares{
@@ -25,7 +26,7 @@ public class Notificacion extends JDialog implements MetodosAuxiliares{
 	
 	public Notificacion(String mensaje) {
 		
-		setLocationRelativeTo(null);
+		setLocation(100,100);
 		
 		setLayout(new GridBagLayout());
 		
@@ -35,18 +36,26 @@ public class Notificacion extends JDialog implements MetodosAuxiliares{
 		gbc.gridy = 0;
 		
 
-		JLabel advertencia = new JLabel (mensaje);
+//		JLabel advertencia = new JLabel (mensaje);
+		
+		JTextArea advertencia = new JTextArea(mensaje);
+        advertencia.setEditable(false);
+        advertencia.setLineWrap(true);
+        advertencia.setWrapStyleWord(true);
+        advertencia.setPreferredSize(new Dimension(700, 600));
+        
 		sonrisa1 = new ImageIcon("./imagenes/sonrisa.png");
 		
-		ImageIcon sonrisa = resizeImage("./imagenes/sonrisa.png", 50, 45);
+		ImageIcon sonrisa = resizeImage("./imagenes/sonrisa.png", 200, 200);
 		JLabel imagen = new JLabel(sonrisa);
 		
-		setTitle("ERROR");
+		setTitle("NOTIFICACION");
 		add(advertencia);
 		add(imagen);
 		
 		setModal(true);
-		setSize(650,100);
+		setResizable(true);
+		setSize(1000,800);
 		setVisible(true);
 		
 

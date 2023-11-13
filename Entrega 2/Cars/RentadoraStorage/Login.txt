@@ -1,8 +1,8 @@
 #
-#Sun Nov 12 20:44:11 COT 2023
+#Mon Nov 13 12:58:16 COT 2023
 DocHudson=Cadillac_supremacy;Hudson;1925/01/26;EstadosUnidos;0258654;https\://static.wikia.nocookie.net/el-mundo-de-cars/images/6/61/Fab_Hudson_Hornet.png/revision/latest/scale-to-width/360?cb\=20230623021532&path-prefix\=es;general
-Guido=A_los_pits;Guido;1989/06/14;Italia;1492384;guido.jpg;3248748623;guido_pits@yahoo.com;credito;14785236995;06/29;1492384;Colombia;2032/12/29;true;cliente
+Guido=A_los_pits;Guido;1/10/1995;Italia;307167;314262728;README.md;pits@yahoo.com;Credito;0218312;12/10/2026;123;10239123;Italia;13/10/2030;Proceso de Pago.pdf;true;cliente
 Mate=To_mate_sin_el_to;Mate;1957/01/12;EstadosUnidos;014785;mate.jpg;RadiatorSpring;true;local
 Rayo=CUCHAU;Rayo;2000/05/26;EstadosUnidos;134098;Rayo.jpg;RadiatorSpring;true;mostrador
 Sally=Porsche_lover;Sally;1994/02/27;Alemania;01125;sally.jpg;RadiatorSpring;true;inventario
-berth=merequetengue;velez;12/10/2022;Colombia;12030123;1231231;Admin_Local.png;berth@gmail.com;123123;holi;12312;232032;Admin_General.png;true;cliente
+berth=pinguin1;Velez;12/10/2004;Colombia;1021633077;316272930;error.png;berth@gmail.com;credito;0129382;12/10/2022;123;9302192;Colombia;15/10/2025;carsLogo.png;true;cliente
