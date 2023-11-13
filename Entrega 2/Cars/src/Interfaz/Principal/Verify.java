@@ -137,6 +137,16 @@ public boolean verifyIdReserva(Properties pReserva, String id,String sedeActual)
 		return revisar;
 	}
 	
+	public boolean verifyExistPlaca(Properties pVehiculos, String placa) {
+		boolean verify = false;
+		Set<Object> llavesLogin = pVehiculos.keySet();
+		
+		if (llavesLogin.contains(placa)) {
+			verify = true;
+		}
+		
+		return verify;
+	}
 	
 	
 	

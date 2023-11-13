@@ -41,6 +41,18 @@ public class CargaArchivos {
 		}
 		return pSeguros;
 	}
+	
+	public Properties cargarVehiculos(){
+		Properties pSeguros = new Properties();
+		try {
+			pSeguros.load(new FileInputStream(new File("./RentadoraStorage/Vehiculo.txt")));
+			}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return pSeguros;
+	}
+	
 	public ArrayList<String> cargarListaSeguros(){
 		Properties pSeguros = cargarSeguros();
 		try {
