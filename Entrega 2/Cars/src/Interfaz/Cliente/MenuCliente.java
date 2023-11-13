@@ -18,15 +18,11 @@ import Interfaz.Principal.Principal;
 public class MenuCliente extends JPanel implements MetodosAuxiliares, ActionListener {
 
 	Principal principal;
-	
 	private GridBagConstraints gbc;
-	
 	private JButton iniciarReserva;
-	
 	private JButton formalizarAlquiler;
-	
 	private JButton entregarVehiculo;
-	
+	private JButton retroceder;
 	static final int YSpace = 3;
 	
 	public MenuCliente(Principal principal) {
@@ -59,6 +55,10 @@ public class MenuCliente extends JPanel implements MetodosAuxiliares, ActionList
         entregarVehiculo.setActionCommand("entregarVehiculo");
 		entregarVehiculo.addActionListener(this);
         
+		retroceder = new JButton("Retroceder");
+		formatButton(retroceder);
+		retroceder.setActionCommand("escogerSede");
+		retroceder.addActionListener(this);
         
         add(instruccion,gbc);
 		gbc.gridy++;
@@ -75,6 +75,10 @@ public class MenuCliente extends JPanel implements MetodosAuxiliares, ActionList
         add(entregarVehiculo, gbc);
         gbc.gridy++;
         addSpace(YSpace);
+        
+        add(retroceder, gbc);
+        gbc.gridy++;
+        addSpace(YSpace);
 		
 	}
 	
@@ -87,7 +91,6 @@ public class MenuCliente extends JPanel implements MetodosAuxiliares, ActionList
 	public void actionPerformed(ActionEvent e) {
 		
 		String grito = e.getActionCommand();
-		
 		principal.cambiarPanel(grito);
 		
 	}

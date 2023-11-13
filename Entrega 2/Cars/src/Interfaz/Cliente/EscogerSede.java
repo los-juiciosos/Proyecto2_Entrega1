@@ -19,23 +19,14 @@ import Interfaz.Principal.Principal;
 public class EscogerSede extends JPanel implements MetodosAuxiliares, ActionListener {
 	
 	Principal principal;
-	
 	private GridBagConstraints gbc;
-	
 	private Catalogo catalogo;
-	
 	private MenuCliente menuCliente;
-	
 	private FormalizarAlquiler formalizarAlquiler;
-	
 	private HacerReserva hacerReserva;
-	
 	private EntregarVehiculo entregarVehiculo;
-	
 	private CambiarReserva cambiarReserva;
-	
 	private NuevosConductores nuevosConductores;
-	
 	private JButton logOut;
 	
 	static final int textFieldSize = 20;
@@ -120,9 +111,7 @@ public class EscogerSede extends JPanel implements MetodosAuxiliares, ActionList
 			JButton button = new JButton("Catalogo");
 			
 			formatButton(button);
-			
-			button.setActionCommand(sede+"C");
-//			
+			button.setActionCommand(sede+"!");
 			button.addActionListener(this);
 			
 			add(button, gbc);
@@ -137,18 +126,18 @@ public class EscogerSede extends JPanel implements MetodosAuxiliares, ActionList
 		
 		String grito = e.getActionCommand();
 		
-		if (grito.charAt(grito.length() - 1) == 'C') {
-			catalogo = new Catalogo(principal, grito.replace("C", ""));
+		if (grito.charAt(grito.length() - 1) == '!') {
+			catalogo = new Catalogo(principal, grito.replace("!", ""));
 			
 		} else if (grito.equals("login")) {
-			principal.cambiarPanel(grito);
+			principal.cambiarPanel(grito); 
 			
 		} else {
-			// # TODO: dale erick
+			principal.setSedeActual(grito.replace("!", ""));
 			principal.cambiarPanel("menuCliente");
+			
 		} 
 	}
-	
 	private void addSpace(int Yspace) {
 		add(Box.createRigidArea(new Dimension(0, Yspace)), gbc);
 		gbc.gridy++;

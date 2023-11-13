@@ -13,6 +13,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Point2D;
+import java.util.Properties;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -23,8 +24,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import Interfaz.Principal.ErrorDisplay;
 import Interfaz.Principal.MetodosAuxiliares;
 import Interfaz.Principal.Principal;
+import Interfaz.Principal.Verify;
 
 public class Login extends JPanel implements MetodosAuxiliares, ActionListener {
 	
@@ -35,19 +38,20 @@ public class Login extends JPanel implements MetodosAuxiliares, ActionListener {
 	private JTextField password;
 	private JButton ingresar;
 	private JButton nuevoUsuario;
-	
 	private CrearCliente crearCliente;
+	private Verify verifyLogin;
 	
 	public Login (Principal principal) {
 		
 		this.principal = principal;
+		this.verifyLogin = new Verify();
 		
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.anchor = GridBagConstraints.WEST;
 		
-		//setBackground(Principal.globalTheme);
+		setBackground(Principal.globalTheme);
 		
 		setSize(500, 500);
 		
@@ -59,10 +63,10 @@ public class Login extends JPanel implements MetodosAuxiliares, ActionListener {
 		bienvenida = new JLabel("Ingresa tu usuario y contraseña");
 		subTitleText(bienvenida);
 		
-		usuario = new JTextField(40);
+		usuario = new JTextField(44);
 		ponerTextitoGris(usuario,"Usuario");
 		
-		password = new JTextField(40);
+		password = new JTextField(44);
 		ponerTextitoGris(password,"Contraseña");
 		
 		ingresar = new JButton("Ingresar");
@@ -118,8 +122,35 @@ public class Login extends JPanel implements MetodosAuxiliares, ActionListener {
 		if (grito.equals("NUEVO")) {
 			crearCliente = new CrearCliente(principal);
 		} else if (grito.equals("INGRESAR")) {
-			// # TODO: dale erick
-			principal.cambiarPanel("escogerSede");
+			String user = usuario.getText();
+			String contrasenia = password.getText();
+			Properties pLogin = principal.cargaArchivos.cargarLogin();
+			
+			boolean verify = verifyLogin.checkLogin(pLogin, user, contrasenia);
+			
+			if (verify == true) {		
+				String rol = verifyLogin.getRol(pLogin, user);
+				if (rol.equals("cliente")) {
+					principal.cambiarPanel("escogerSede");
+				}
+				else if (rol.equals("general")) {
+					principal.cambiarPanel("consolaAdminGeneral");
+				}
+				else if (rol.equals("local")) {
+					principal.cambiarPanel("consolaAdminLocal");
+				}
+				else if (rol.equals("mostrador")) {
+					principal.cambiarPanel("empleadoMostrador");
+				}
+				else if (rol.equals("inventario")) {
+					principal.cambiarPanel("empleadoInventario");
+				}
+			}
+			else {
+			ponerTextitoGris(usuario,"Usuario");
+			ponerTextitoGris(password,"Contraseña");
+			ErrorDisplay error = new ErrorDisplay("USUARIO O CONSTRASEÑA INCORRECTA");
+			}
 		}
 		
 	}
