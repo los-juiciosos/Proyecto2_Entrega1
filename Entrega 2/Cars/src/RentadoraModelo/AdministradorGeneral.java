@@ -31,6 +31,18 @@ public class AdministradorGeneral extends Usuario{
 		}
 	}
 	
+	public void eliminarMantenimiento(String placa) {
+		Properties pMantenimiento = new Properties();
+		try {
+			pMantenimiento.load(new FileInputStream(new File("./RentadoraStorage/Mantenimiento.txt")));
+			pMantenimiento.remove(placa);
+			guardarLogin(pMantenimiento,"Mantenimiento");
+			
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	public void registrarNuevoVehiculo(String placaAgregar,String marca, String modelo,
 			String color,String transmision,String combustible,String capacidad,
 			String sedeAgregar,String categoriaAgregar) {
@@ -40,7 +52,7 @@ public class AdministradorGeneral extends Usuario{
 		
 		Properties pVehiculo = new Properties();
 		try {
-			pVehiculo.load(new FileInputStream(new File("./RentadoraStorage/Login.txt")));
+			pVehiculo.load(new FileInputStream(new File("./RentadoraStorage/Vehiculo.txt")));
 			pVehiculo.put(placaAgregar, infoFinal);
 			guardarLogin(pVehiculo,"Vehiculo");
 		}
@@ -50,19 +62,10 @@ public class AdministradorGeneral extends Usuario{
 		
 	}
 	
-	public void modificarOfertaSeguros(String seguro, String precio) {
+	public void modificarOfertaSeguros(String nuevoSeguro, String precio) {
 		
 		Properties pSeguro = new Properties();
-		String nuevoSeguro = "Multas";
-		if (seguro.equals("1")) {
-			nuevoSeguro = "TodoRiesgo";
-		}
-		else if (seguro.equals("2")) {
-			nuevoSeguro = "SoloChoques";
-		}
-		else if (seguro.equals("3")) {
-			nuevoSeguro = "Multas";
-		}
+		
 		
 		try {
 			pSeguro.load(new FileInputStream(new File("./RentadoraStorage/Seguros.txt")));
@@ -85,14 +88,14 @@ public class AdministradorGeneral extends Usuario{
 			String infoSede = (String) pSede.get(sede);
 			String[] listaSede = infoSede.split(";");
 			
-			if (opcion.equals("1")) {
+			if (opcion.equals("Direccion")) {
 				listaSede[1] = modificacion;
 			}
-			else if (opcion.equals("2")) {
+			else if (opcion.equals("Hora Apertura")) {
 				listaSede[2] = modificacion;
 
 			}
-			else if (opcion.equals("3")) {
+			else if (opcion.equals("Hora Cierre")) {
 				listaSede[3] = modificacion;
 
 			}
@@ -106,6 +109,27 @@ public class AdministradorGeneral extends Usuario{
 		}
 	}
 	
+	public void actualizarEstadoVehículo(String placa) {
+		
+		Properties pVehiculo = new Properties();
+		Properties pMantenimiento = new Properties();
+		try {
+			pVehiculo.load(new FileInputStream(new File("./RentadoraStorage/Vehiculo.txt")));
+			String infoReserva = (String) pVehiculo.get(placa);
+			String[] listaInfoLogin = infoReserva.split(";");
+			listaInfoLogin[7] = "false";
+			listaInfoLogin[8] = "true";
+			String informacionJunta = String.join(";", listaInfoLogin);
+			pVehiculo.put(placa, informacionJunta);
+			
+			guardarLogin(pVehiculo,"Vehiculo");
+		
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void modificarTarifaCategoria(String categoria, String precio) {
 		
 		Properties pTarifa = new Properties();
@@ -147,11 +171,11 @@ public class AdministradorGeneral extends Usuario{
 		return null;
 	}
 	
-	public void mostrarLog(String placaLog) {
+	public String mostrarLog(String placaLog) {
 		
 		Properties pHistorial = new Properties();
 		Properties pAlquiler = new Properties();
-		
+		String mensaje = "";
 		try {
 			pHistorial.load(new FileInputStream(new File("./RentadoraStorage/HistorialVehiculo.txt")));
 			pAlquiler.load(new FileInputStream(new File("./RentadoraStorage/Alquiler.txt")));
@@ -162,8 +186,11 @@ public class AdministradorGeneral extends Usuario{
 			}
 			
 			for (Object placa: llaves) {
-				if (placaLog.equals(placa)) {
-					pHistorial.put(placaLog, pAlquiler.get(placa));
+				String placaLarga = (String) placa;
+				if (placaLarga.contains(placaLog)) {
+					pHistorial.put(placaLog, pAlquiler.get(placaLarga));
+					String info = (String) pAlquiler.get(placaLarga);
+					mensaje = mensaje + info + "\n";
 				}
 			}
 			
@@ -173,7 +200,7 @@ public class AdministradorGeneral extends Usuario{
 			e.printStackTrace();
 		}
 		
-		
+		return mensaje;
 	}
 	
 	public void guardarLogin(Properties p,String name) {
