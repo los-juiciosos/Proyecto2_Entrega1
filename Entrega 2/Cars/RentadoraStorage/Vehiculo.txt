@@ -1,6 +1,6 @@
 #
-#Mon Nov 13 18:46:48 COT 2023
-AEW123=AEW123;chevrolet;aveo;gris;automatica;corriente;5;true;false;RadiatorSpring;suv
+#Mon Nov 13 21:58:45 COT 2023
+AEW123=AEW123;chevrolet;aveo;gris;automatica;corriente;5;false;true;RadiatorSpring;suv
 AOD043=AOD043;ford;fusion;magenta;automatica;electrico;4;false;true;Emeryville;clasico
 EQR485=EQR485;renault;duster;negro;manual;gasolina;5;false;false;RadiatorSpring;vans
 FGH897=FGH897;jeep;tundra;azul;automatica;hibrido;6;false;true;CarburetorCanyon;todoterreno

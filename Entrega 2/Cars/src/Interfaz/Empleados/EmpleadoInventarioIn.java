@@ -18,8 +18,9 @@ import Interfaz.Principal.MetodosAuxiliares;
 import Interfaz.Principal.Notificacion;
 import Interfaz.Principal.Principal;
 import RentadoraModelo.AdministradorGeneral;
+import RentadoraModelo.EmpleadoInventario;
 
-public class EmpleadoInventario extends JPanel implements MetodosAuxiliares, ActionListener {
+public class EmpleadoInventarioIn extends JPanel implements MetodosAuxiliares, ActionListener {
 	
 	Principal principal;
 	
@@ -40,7 +41,7 @@ public class EmpleadoInventario extends JPanel implements MetodosAuxiliares, Act
 	private ErrorDisplay error;
 	private Notificacion notify;
 	
-	public EmpleadoInventario(Principal principal) {
+	public EmpleadoInventarioIn(Principal principal) {
 		setLayout(new GridBagLayout());
 		this.principal = principal;
 		this.gbc = new GridBagConstraints();
@@ -115,7 +116,36 @@ public class EmpleadoInventario extends JPanel implements MetodosAuxiliares, Act
 			principal.cambiarPanel(grito);
 		}
 		else {
-			// #TODO: dale erick :v
+			if (nuevaTarifa.getText().equals("Ingrese la placa del carro a revisar")) {
+				error = new ErrorDisplay("PORFAVOR LLENE TODOS LOS CAMPOS");
+			}
+			else if (grito.equals("Consultar")){
+				EmpleadoInventario empleado = (EmpleadoInventario) principal.usuarioActual;
+				String placaRevisar = empleado.obtenerPlacaRevision();
+				if (placaRevisar == null) {
+					nuevaTarifa.setText("NO HAY POR AHORA");
+				}
+				else {
+					nuevaTarifa.setText(placaRevisar);
+				}
+			}
+			else if (grito.equals("confirmation")) {
+				EmpleadoInventario empleado = (EmpleadoInventario) principal.usuarioActual;
+				String placaRevisar = nuevaTarifa.getText();
+				String seleccion = (String) seguros.getSelectedItem();
+				if (seleccion.equals("Si")) {
+					empleado.revisarVehículo(placaRevisar,true);
+					notify = new Notificacion("SE MANDÓ A MANTENIMIENTO SATISFACTORIAMENTE");
+				}
+				else {
+					empleado.actualizarEstadoVehículo(placaRevisar);
+					notify = new Notificacion("EL VEHICULO ESTÁ LISTO PARA ANDAR");
+						
+				}
+				nuevaTarifa.setText("");
+				principal.cambiarPanel("empleadoInventario");
+				}
+				
 			}
 			
 		}

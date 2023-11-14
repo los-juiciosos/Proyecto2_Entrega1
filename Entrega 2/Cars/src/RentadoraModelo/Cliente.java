@@ -7,7 +7,6 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import RentadoraConsola.Consola;
 
 public class Cliente extends Usuario {
 	

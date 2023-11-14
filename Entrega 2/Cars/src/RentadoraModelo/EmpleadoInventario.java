@@ -58,6 +58,7 @@ public class EmpleadoInventario extends Empleado{
 			
 			guardarLogin(pVehiculo,"Vehiculo");
 			
+			
 		}
 		catch (Exception e) {
 			e.printStackTrace();
