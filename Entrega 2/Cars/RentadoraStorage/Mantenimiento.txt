@@ -1,3 +1,2 @@
 #
-#Sun Oct 22 23:08:21 COT 2023
-YXW111=YXW111;yamaha;native;azul;automatica;gasolina;5;false;false;RadiatorSpring;todoterreno
+#Mon Nov 13 21:59:51 COT 2023

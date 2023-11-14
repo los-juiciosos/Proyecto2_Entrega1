@@ -12,31 +12,23 @@ import javax.swing.JPanel;
 import Interfaz.Principal.MetodosAuxiliares;
 import Interfaz.Principal.Principal;
 
-public class EmpleadoMostrador extends JPanel implements MetodosAuxiliares, ActionListener {
+public class EmpleadoMostradorIn extends JPanel implements MetodosAuxiliares, ActionListener {
 	
 	Principal principal;
 	
 	private GridBagConstraints gbc;
-	
 	private RevisarVehiculo revisarVehiculo;
-	
 	private ReservaEspecial reservaEspecial; 
-	
 	private JButton reservaEspecialButton;
-	
 	private JLabel reservaEspecialLabel;
-	
 	private JButton revisarVehiculoButton;
-	
 	private JLabel revisarVehiculoLabel;
-	
 	private JButton confirmar;
-	
 	static final int textFieldSize = 20;
 	
 	static final int YSpace = 5;
 	
-	public EmpleadoMostrador(Principal principal) {
+	public EmpleadoMostradorIn(Principal principal) {
 		
 		this.principal = principal;
 		

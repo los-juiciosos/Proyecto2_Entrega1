@@ -1,4 +1,2 @@
 #
-#Mon Nov 13 16:41:08 COT 2023
-1Guido=01/01/2024;18\:00;02/01/2024;18\:00;WOT712;RadiatorSpring;RadiatorSpring;568000.0
-2Guido=02/04/2024;18\:00;08/04/2024;18\:00;WOT712;RadiatorSpring;RadiatorSpring;568000.0
+#Mon Nov 13 22:04:10 COT 2023

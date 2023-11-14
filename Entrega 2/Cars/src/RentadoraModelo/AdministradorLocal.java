@@ -81,25 +81,25 @@ public class AdministradorLocal extends Empleado{
 			}
 			String[] listaInfo = infoEmpleado.split(";");
 			if (listaInfo[6].equals(sedeLocal)) {
-			if (opcion.equals("1")) {
+			if (opcion.equals("Nombre")) {
 				listaInfo[1] = modificacion;
 			}
-			else if (opcion.equals("2")) {
+			else if (opcion.equals("FechaNacimiento dd/mm/YYYY")) {
 				listaInfo[2] = modificacion;
 			}
-			else if (opcion.equals("3")) {
+			else if (opcion.equals("Nacionalidad")) {
 				listaInfo[3] = modificacion;
 			}
-			else if (opcion.equals("4")) {
+			else if (opcion.equals("Documento de Identidad")) {
 				listaInfo[4] = modificacion;
 			}
-			else if (opcion.equals("5")) {
+			else if (opcion.equals("Imagen")) {
 				listaInfo[5] = modificacion;
 			}
-			else if (opcion.equals("6")) {
+			else if (opcion.equals("Sede en la que trabaja")) {
 				listaInfo[6] = modificacion;
 			}
-			else if (opcion.equals("7")) {
+			else if (opcion.equals("Rol del empleado")) {
 				listaInfo[8] = modificacion;
 			}
 			

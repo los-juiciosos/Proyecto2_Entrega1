@@ -29,6 +29,30 @@ public class Verify{
 		return verify;
 	}
 	
+	public boolean verifyCarroInSede(Properties pVehiculos, String placa, String sede) {
+		boolean verify = false;
+		try {
+			String infoLogin = (String) pVehiculos.get(placa);
+			if (infoLogin == null) {
+				return false;
+			}
+			String[] listaInfoLogin = infoLogin.split(";");
+			String sedeVehiculo = listaInfoLogin[9];
+			
+			
+			if (sedeVehiculo.equals(sede)) {
+				verify = true;
+			}
+		}
+		catch (Exception e) {
+			verify = false;
+		}
+		
+		
+		
+		return verify;
+	}
+	
 	public String getRol(Properties pLogin, String user) {
 		
 		String infoLogin = (String) pLogin.get(user);
@@ -64,7 +88,30 @@ public class Verify{
 		
 	}
 	
-public boolean verifyIdReserva(Properties pReserva, String id,String sedeActual) {
+	public boolean verifyEmpleadoSede(Properties pLogin, String user, String sede) {
+		boolean verify = false;
+		
+		try {
+			String infoLogin = (String) pLogin.get(user);
+			if (infoLogin == null) {
+				return false;
+			}
+			String[] listaInfoLogin = infoLogin.split(";");
+			String sedeEmpleado = listaInfoLogin[6];
+			
+			
+			if (sedeEmpleado.equals(sede)) {
+				verify = true;
+			}
+		}
+		catch (Exception e) {
+			verify = false;
+		}
+		
+		return verify;
+	}
+	
+	public boolean verifyIdReserva(Properties pReserva, String id,String sedeActual) {
 		boolean verify = false;
 		Set<Object> llavesLogin = pReserva.keySet();
 		if (llavesLogin.contains(id)) {
