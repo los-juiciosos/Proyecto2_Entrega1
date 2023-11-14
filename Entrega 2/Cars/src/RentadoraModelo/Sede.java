@@ -134,6 +134,14 @@ public class Sede {
 		return nodis + dis;
 	}
 	
+	public int getInventarioDisponible()
+	{
+		int nodis = noDisponibles.size();
+		int dis = disponibles.size();
+		
+		return dis;
+	}
+	
 	public ArrayList<Vehiculo> getDisponibles()
 	{
 		return disponibles;

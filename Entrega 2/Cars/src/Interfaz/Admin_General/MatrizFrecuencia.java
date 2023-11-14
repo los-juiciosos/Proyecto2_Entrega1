@@ -1,4 +1,4 @@
-package Interfaz.Admin_Local;
+package Interfaz.Admin_General;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -16,6 +16,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Interfaz.Principal.MetodosAuxiliares;
+import Interfaz.Principal.Principal;
+
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
@@ -25,9 +28,6 @@ import java.time.temporal.WeekFields;
 import java.util.Locale;
 import java.util.Set;
 import java.util.Map.Entry;
-
-import Interfaz.Principal.MetodosAuxiliares;
-import Interfaz.Principal.Principal;
 
 public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, ActionListener{
 
@@ -43,12 +43,25 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 	
 	private static final int margenY = 30;
 	
+	private int carrosTotales;
+	
+	private String sedeActual;
+	
 	private int[][] cuadricula;
 	
-	public MatrizFrecuencia(Principal principal, String sede) {		
+	public MatrizFrecuencia(Principal principal, String sede) {	
+		
+		this.principal = principal;
+		
 		this.year = 2023;
+		
+		this.carrosTotales = 0;
+		
+		this.sedeActual = sede;
 				
 		crearCuadricula();
+		
+		pintarCuadricula();
 						
 		setVisible(true);
 	}
@@ -87,7 +100,13 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
             String valores = (String) entry.getValue();
             String[] datos = valores.split(";");
             
-            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            String sede = datos[5];
+            
+            if (!sede.equals(sedeActual)) {
+            	continue;
+            }
+            
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             
             LocalDate fechaInicial = LocalDate.parse(datos[0], dateFormatter);
             LocalDate fechaFinal = LocalDate.parse(datos[2], dateFormatter);
@@ -149,7 +168,6 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 				int frecuencia = cuadricula[i][ii];
 				if (frecuencia == 0) {
 					
-					System.out.println(i+" "+ii);
 					 Point2D start = new Point2D.Float(x, y); // Starting point of the gradient
 					 Point2D end = new Point2D.Float((float)start.getX()+gridSize, (float)start.getY()+gridSize);
 					 GradientPaint gradient = new GradientPaint(start, cutePurple, end, cuteYellow);
@@ -171,18 +189,6 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 				g2d.fill(rectangle);
 				g2d.draw(rectangle);
 			} 
-	}
-	
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		
-		frame.setLayout(new BorderLayout());
-		
-//		frame.add(new MatrizFrecuencia(null), BorderLayout.CENTER);
-		
-		frame.pack();
-				
-		frame.setVisible(true);
 	}
 	
 	@Override

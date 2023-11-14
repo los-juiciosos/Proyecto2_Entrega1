@@ -36,6 +36,7 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 import Interfaz.Admin_General.ConsolaAdminGeneral;
+import Interfaz.Admin_General.MatrizFrecuencia;
 import Interfaz.Admin_Local.ConsolaAdminLocal;
 import Interfaz.Cliente.EscogerSede;
 import Interfaz.Empleados.EmpleadoInventario;
@@ -58,6 +59,7 @@ public class Principal extends JFrame implements EventListener {
 	private EmpleadoInventario empleadoInventario;
 	private EmpleadoMostrador empleadoMostrador;
 	private EscogerSede escogerSede;
+	private MatrizFrecuencia matrizFrecuencia;
 	
 	public static final Color globalTheme = new Color(227, 36, 43); //El color base de la aplicacion 
 	private CardLayout cardLayout;
@@ -89,6 +91,7 @@ public class Principal extends JFrame implements EventListener {
 		this.consolaAdminGeneral = new ConsolaAdminGeneral(this);
 		this.empleadoInventario = new EmpleadoInventario(this);
 		this.empleadoMostrador = new EmpleadoMostrador(this);
+		this.matrizFrecuencia = new MatrizFrecuencia(this, sedeActual);
 		
         BufferedImage originalImage; //LOGO DE CARS
 		try {
@@ -106,6 +109,7 @@ public class Principal extends JFrame implements EventListener {
 		mainPanel.add(consolaAdminGeneral,"consolaAdminGeneral");
 		mainPanel.add(empleadoInventario,"empleadoInventario");
 		mainPanel.add(empleadoMostrador,"empleadoMostrador");
+		mainPanel.add(matrizFrecuencia,"matrizFrecuencia");
 		
 		centerWindow();
         pack();
