@@ -34,6 +34,7 @@ public class ModificarTrabajador extends JPanel implements MetodosAuxiliares, Ac
 	private ErrorDisplay error;
 	private Notificacion notify;
 	private Verify verificador;
+	private JButton volver;
 
 	public ModificarTrabajador(Principal principal) {
 		
@@ -81,6 +82,11 @@ public class ModificarTrabajador extends JPanel implements MetodosAuxiliares, Ac
 		
 		add(confirmar,gbc);
 		
+		volver = new JButton("VOLVER");
+		volver.setActionCommand("VOLVER");
+		volver.addActionListener(this);
+		add(volver, gbc);
+		
 	}
 	
 	@Override
@@ -88,7 +94,11 @@ public class ModificarTrabajador extends JPanel implements MetodosAuxiliares, Ac
 		
 		String grito = e.getActionCommand();
 		
-		if (nuevoValor.getText().equals("Nuevo Valor") || nombreTrabajador.getText().equals("Usuario del Trabajador")) {
+		if (grito.equals("VOLVER")) {
+			principal.cambiarPanel("consolaAdminLocal");
+		}
+		
+		else if (nuevoValor.getText().equals("Nuevo Valor") || nombreTrabajador.getText().equals("Usuario del Trabajador")) {
 			error = new ErrorDisplay("PORFAVOR LLENE TODOS LOS CAMPOS");
 		}
 		else {

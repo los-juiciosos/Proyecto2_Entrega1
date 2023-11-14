@@ -36,6 +36,7 @@ public class RegistrarTrabajador extends JPanel implements MetodosAuxiliares, Ac
 	private Verify verificador;
 	private ErrorDisplay error;
 	private Notificacion notify;
+	private JButton volver;
 
 	static final int textFieldSize = 20;
 	
@@ -62,6 +63,10 @@ public class RegistrarTrabajador extends JPanel implements MetodosAuxiliares, Ac
 		confirmar.addActionListener(this);
 		add(confirmar,gbc);
 		
+		volver = new JButton("VOLVER");
+		volver.setActionCommand("VOLVER");
+		volver.addActionListener(this);
+		add(volver, gbc);
 	}
 	
 	private void addDesplegables() {
@@ -120,7 +125,11 @@ public class RegistrarTrabajador extends JPanel implements MetodosAuxiliares, Ac
 		
 		String grito = e.getActionCommand();
 		
-		if (grito.equals("FOTO")) {
+		if (grito.equals("VOLVER")) {
+			principal.cambiarPanel("consolaAdminLocal");
+		}
+		
+		else if (grito.equals("FOTO")) {
 			String fotoName = verificador.chooseFile();
 			if (fotoName == null) {
 				fotoName = "ERROR";

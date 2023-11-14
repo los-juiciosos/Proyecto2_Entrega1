@@ -30,6 +30,8 @@ public class ReservaEspecial extends JPanel implements MetodosAuxiliares, Action
 	
 	private JButton confirmar;
 	
+	private JButton volver;
+	
 	static final int textFieldSize = 20;
 	
 	static final int YSpace = 5;
@@ -39,6 +41,7 @@ public class ReservaEspecial extends JPanel implements MetodosAuxiliares, Action
 	private ArrayList<JTextField> listaCampos;
 	private ArrayList<String> campos;
 	private JComboBox<String> sedes;
+	
 	
 	public ReservaEspecial(Principal principal) {
 		
@@ -59,6 +62,10 @@ public class ReservaEspecial extends JPanel implements MetodosAuxiliares, Action
 		confirmar = new JButton("Confirmar");
 		confirmar.setActionCommand("empleadoMostrador");
 		confirmar.addActionListener(this);
+		
+		volver = new JButton("VOLVER");
+		volver.setActionCommand("VOLVER");
+		volver.addActionListener(this);
         
 		
 		add(instruccion,gbc);
@@ -76,6 +83,7 @@ public class ReservaEspecial extends JPanel implements MetodosAuxiliares, Action
 		add(sedes,gbc);
         
         add(confirmar,gbc);
+        add(volver,gbc);
 		
         
         
@@ -115,7 +123,12 @@ public class ReservaEspecial extends JPanel implements MetodosAuxiliares, Action
 		}
 		
 		boolean verifiLleno = verificador.verifyLleno(info);
-		if (verifiLleno == false) {
+		
+		if (grito.equals("VOLVER")) {
+			principal.cambiarPanel("empleadoMostrador");
+		}
+		
+		else if (verifiLleno == false) {
 			error = new ErrorDisplay("PORFAVOR LLENE TODOS LOS CAMPOS");
 		}
 		else {

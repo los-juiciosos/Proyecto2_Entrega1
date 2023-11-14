@@ -37,6 +37,8 @@ public class ConsolaAdminLocal extends JPanel implements MetodosAuxiliares, Acti
 	
 	private JLabel modificarTrabajadorLabel;
 	
+	private JButton volver;
+	
 	public ConsolaAdminLocal(Principal principal) {
 		
 		this.principal = principal;
@@ -57,6 +59,10 @@ public class ConsolaAdminLocal extends JPanel implements MetodosAuxiliares, Acti
 		gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.WEST;
+        
+        volver = new JButton("LOGOUT");
+		volver.setActionCommand("login");
+		volver.addActionListener(this);
 		
          add(crearClienteButton,gbc);
          gbc.gridx = 1;
@@ -78,6 +84,8 @@ public class ConsolaAdminLocal extends JPanel implements MetodosAuxiliares, Acti
          add(modificarTrabajadorLabel, gbc);
          gbc.gridy++;
          gbc.gridx = 0;
+         
+         add(volver, gbc);
 		
 	}
 

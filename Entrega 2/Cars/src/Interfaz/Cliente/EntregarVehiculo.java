@@ -29,6 +29,7 @@ public class EntregarVehiculo extends JPanel implements MetodosAuxiliares, Actio
 	private ErrorDisplay error;
 	private ArrayList<JTextField> listaCampos;
 	private Notificacion notify;
+	private JButton volver;
 	
 	public EntregarVehiculo(Principal principal) {
 		
@@ -47,6 +48,11 @@ public class EntregarVehiculo extends JPanel implements MetodosAuxiliares, Actio
 		confirmar.setActionCommand("menuCliente");
 		confirmar.addActionListener(this);
 		add(confirmar,gbc);
+		
+		volver = new JButton("VOLVER");
+		volver.setActionCommand("VOLVER");
+		volver.addActionListener(this);
+		add(volver, gbc);
 		
 	}
 	
@@ -69,7 +75,11 @@ public class EntregarVehiculo extends JPanel implements MetodosAuxiliares, Actio
 		
 		String grito = e.getActionCommand();
 		
-		if (grito.equals("Ingrese la placa") || grito.equals( "ID de reserva")) {
+		if (grito.equals("VOLVER")) {
+			principal.cambiarPanel("menuCliente");
+		}
+		
+		else if (grito.equals("Ingrese la placa") || grito.equals( "ID de reserva")) {
 			error = new ErrorDisplay("LLENE TODOS LOS CAMPOS PORFAVOR");
 		}
 		else {

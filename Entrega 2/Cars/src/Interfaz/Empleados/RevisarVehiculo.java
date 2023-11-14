@@ -28,6 +28,8 @@ public class RevisarVehiculo extends JPanel implements MetodosAuxiliares, Action
 	
 	private JButton confirmar;
 	
+	private JButton volver;
+	
 	private JTextField placa;
 	
 	static final int textFieldSize = 20;
@@ -58,11 +60,17 @@ public class RevisarVehiculo extends JPanel implements MetodosAuxiliares, Action
 		confirmar.setActionCommand("empleadoMostrador");
 		confirmar.addActionListener(this);
 		
+		volver = new JButton("VOLVER");
+		volver.setActionCommand("VOLVER");
+		volver.addActionListener(this);
+		
 		add(instruccion, gbc);
 		
 		add(placa, gbc);
 		
 		add(confirmar, gbc);
+		
+		add(volver,gbc);
 		
 	}
 	
@@ -71,7 +79,11 @@ public class RevisarVehiculo extends JPanel implements MetodosAuxiliares, Action
 		
 		String grito = e.getActionCommand();
 		
-		if (placa.getText().equals("Placa")) {
+		if (grito.equals("VOLVER")) {
+			principal.cambiarPanel("empleadoMostrador");
+		}
+		
+		else if (placa.getText().equals("Placa")) {
 			error = new ErrorDisplay("PORFAVOR LLENE EL CAMPO");
 		}
 		else {

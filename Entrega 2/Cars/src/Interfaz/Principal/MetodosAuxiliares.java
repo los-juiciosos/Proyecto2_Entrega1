@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
@@ -68,4 +69,11 @@ public interface MetodosAuxiliares {
 		button.setFont(new Font("Arial", Font.BOLD, 16));
 		button.setForeground(Color.WHITE);
 	}
+	
+	default public void setTextFont(Graphics g) {
+		Font font = new Font("Arial", Font.BOLD, 18);
+        g.setFont(font);
+	}
+	
+	
 }

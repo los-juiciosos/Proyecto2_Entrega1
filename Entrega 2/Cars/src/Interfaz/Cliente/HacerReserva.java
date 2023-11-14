@@ -37,6 +37,7 @@ public class HacerReserva extends JPanel implements MetodosAuxiliares, ActionLis
 	private Verify verificador;
 	private ErrorDisplay error;
 	private Notificacion notify;
+	private JButton volver;
 	ArrayList<String> campos = new ArrayList<String>();
 	
 	public HacerReserva(Principal principal) {
@@ -60,6 +61,11 @@ public class HacerReserva extends JPanel implements MetodosAuxiliares, ActionLis
 		confirmar.setActionCommand("CONFIRMAR");
 		confirmar.addActionListener(this);
 		add(confirmar,gbc);
+		
+		volver = new JButton("VOLVER");
+		volver.setActionCommand("VOLVER");
+		volver.addActionListener(this);
+		add(volver, gbc);
 
 	}
 	
@@ -103,7 +109,11 @@ public class HacerReserva extends JPanel implements MetodosAuxiliares, ActionLis
 	public void actionPerformed(ActionEvent e) {
 		
 		String grito = e.getActionCommand();
-		if (grito.equals("CONFIRMAR")) {	
+		
+		if (grito.equals("VOLVER")) {
+			principal.cambiarPanel("menuCliente");
+		}
+		else if (grito.equals("CONFIRMAR")) {	
 			
 			String sede = (String) sedes.getSelectedItem();
 			String categoria = (String) categorias.getSelectedItem();

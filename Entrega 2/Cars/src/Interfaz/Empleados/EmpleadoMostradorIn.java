@@ -24,6 +24,7 @@ public class EmpleadoMostradorIn extends JPanel implements MetodosAuxiliares, Ac
 	private JButton revisarVehiculoButton;
 	private JLabel revisarVehiculoLabel;
 	private JButton confirmar;
+	private JButton volver;
 	static final int textFieldSize = 20;
 	
 	static final int YSpace = 5;
@@ -45,6 +46,10 @@ public class EmpleadoMostradorIn extends JPanel implements MetodosAuxiliares, Ac
         gbc.gridx = 0;
         gbc.gridy = 0;
         
+        volver = new JButton("LOGOUT");
+		volver.setActionCommand("login");
+		volver.addActionListener(this);
+        
         crearBotones();
         
         crearLabels();
@@ -62,6 +67,8 @@ public class EmpleadoMostradorIn extends JPanel implements MetodosAuxiliares, Ac
         add(revisarVehiculoLabel,gbc);
         gbc.gridy++;
         gbc.gridx = 0;
+        
+        add(volver,gbc);
         
 	}
 

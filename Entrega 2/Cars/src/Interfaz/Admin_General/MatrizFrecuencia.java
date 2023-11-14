@@ -204,10 +204,16 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 		int x = 3*gridSize + margenX;
 		int y = cuadricula.length*gridSize + margenY + 20;
 		
+		Point2D start = new Point2D.Float(x, y); // Starting point of the gradient
+		Point2D end = new Point2D.Float((float)start.getX()+gridSize, (float)start.getY()+gridSize);
+		GradientPaint gradient = new GradientPaint(start, cutePurple, end, cuteYellow);
+		g2d.setPaint(gradient);
+		
 		RoundRectangle2D.Double rectangle = new  RoundRectangle2D.Double(x,y,gridSize,gridSize,20,20);
 		g2d.fill(rectangle);
 		g2d.draw(rectangle);
 		
+		setTextFont(g);
 		g.drawString("100%",x+gridSize+5,y + gridSize -5);
 	}
 	

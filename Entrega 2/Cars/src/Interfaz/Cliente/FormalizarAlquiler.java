@@ -39,6 +39,7 @@ public class FormalizarAlquiler extends JPanel implements MetodosAuxiliares, Act
 	private ErrorDisplay error;
 	private Verify verificador = new Verify();
 	private Notificacion notify;
+	private JButton volver;
 	
 	public FormalizarAlquiler(Principal principal) {
 		
@@ -89,6 +90,11 @@ public class FormalizarAlquiler extends JPanel implements MetodosAuxiliares, Act
         add(confirmar, gbc);
         gbc.gridy++;
         
+        volver = new JButton("VOLVER");
+		volver.setActionCommand("VOLVER");
+		volver.addActionListener(this);
+		add(volver, gbc);
+        
         addSpace(YSpace);
 
 	}
@@ -135,13 +141,19 @@ public class FormalizarAlquiler extends JPanel implements MetodosAuxiliares, Act
 		Properties pReserva = principal.cargaArchivos.cargarReserva();
 		boolean verifyIdValida = verificador.verifyIdReserva(pReserva, idReserva.getText(),principal.sedeActual);
 		
-		if(verifyIdValida == false) {
+		String grito = e.getActionCommand();
+		
+		if (grito.equals("VOLVER")) {
+			principal.cambiarPanel("menuCliente");
+		}
+		
+		else if(verifyIdValida == false) {
 			error = new ErrorDisplay("NO EXISTE UNA RESERVA A ESE NOMBRE EN ESTA SEDE");
 		}
 		else {
 			principal.idReservaActual = idReserva.getText();
 
-			String grito = e.getActionCommand();
+			
 			if (grito.equals("menuCliente")) {
 				String seguro =  (String) seguros.getSelectedItem();
 				ArrayList<Object> listaAlquiler = principal.cargaArchivos.cargarAlquiler(principal.idReservaActual,seguro,cantidadConductores);

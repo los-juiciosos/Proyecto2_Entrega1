@@ -32,10 +32,15 @@ public class RevisarGrafico extends JPanel implements MetodosAuxiliares, ActionL
 		
 		crearBotones();
 		
+		this.gbc = new GridBagConstraints();
+		gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.anchor = GridBagConstraints.CENTER;
+		
 		confirmar = new JButton("VOLVER");
 		formatButton(confirmar);
 		confirmar.setActionCommand("consolaAdminGeneral");
 		confirmar.addActionListener(this);
+		add(confirmar, gbc);
 	}
 	
 	private void crearBotones() {
