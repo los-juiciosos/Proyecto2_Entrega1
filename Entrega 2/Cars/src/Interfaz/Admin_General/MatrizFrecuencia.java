@@ -6,11 +6,14 @@ import java.awt.Dimension;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Point2D;
 import java.awt.geom.RoundRectangle2D;
 
+import javax.swing.Box;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -35,9 +38,11 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 	
 	private int year;
 	
-	private static final int alto = 190;
+	private GridBagConstraints gbc;
 	
-	private static final int ancho = 1500;
+	public static final int alto = 190;
+	
+	public static final int ancho = 1500;
 	
 	private static final int margenX = 70;
 	
@@ -45,11 +50,11 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 	
 	private int carrosTotales;
 	
-	private String sedeActual;
-	
+	public static String sedeActual;
+		
 	private int[][] cuadricula;
 	
-	public MatrizFrecuencia(Principal principal, String sede) {	
+	public MatrizFrecuencia(Principal principal) {	
 		
 		this.principal = principal;
 		
@@ -57,7 +62,9 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 		
 		this.carrosTotales = 0;
 		
-		this.sedeActual = sede;
+		this.gbc = new GridBagConstraints();
+		gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.anchor = GridBagConstraints.CENTER;
 				
 		crearCuadricula();
 		
@@ -67,6 +74,7 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 	}
 	
 	public void crearCuadricula()
+	
 	{
 		cuadricula = new int[7][weeksInAYear()];
 		for (int i = 0; i < cuadricula.length; i++)
@@ -90,7 +98,7 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 	}
 	
 	public void pintarCuadricula() {
-		
+				
 		WeekFields weekFields = WeekFields.of(Locale.getDefault());
 		
 		Set<Entry<Object, Object>> entrySet = principal.cargaArchivos.cargarReserva().entrySet();
@@ -145,6 +153,7 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 			
 		}
 		
+		//Añadir meses
 		for (Month month : Month.values()) {
 
             LocalDate firstDayOfMonth = LocalDate.of(year, month, 1);
@@ -157,6 +166,7 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
             
             g.drawString(capitalizedMonthName, firstWeekNumber*gridSize + margenX + 0, 15);
         }
+		
 		
 		//Añadir cuadritos
 		for (int i = 0; i < cuadricula.length; i++)
@@ -189,6 +199,16 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 				g2d.fill(rectangle);
 				g2d.draw(rectangle);
 			} 
+		
+		//Añadir notacion
+		int x = 3*gridSize + margenX;
+		int y = cuadricula.length*gridSize + margenY + 20;
+		
+		RoundRectangle2D.Double rectangle = new  RoundRectangle2D.Double(x,y,gridSize,gridSize,20,20);
+		g2d.fill(rectangle);
+		g2d.draw(rectangle);
+		
+		g.drawString("100%",x+gridSize+5,y + gridSize -5);
 	}
 	
 	@Override
@@ -199,8 +219,15 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		
+		String grito = e.getActionCommand();
+		
+		principal.cambiarPanel(grito);
+		
+	}
+	
+	private void addSpace(int Yspace) {
+		add(Box.createRigidArea(new Dimension(0, Yspace)), gbc);
 	}
 
 }

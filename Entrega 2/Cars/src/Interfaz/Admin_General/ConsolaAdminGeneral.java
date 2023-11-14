@@ -55,6 +55,7 @@ public class ConsolaAdminGeneral extends JPanel implements MetodosAuxiliares, Ac
 	private ModificarInformacionSede modificarInformacionSede;
 	private ModificarTarifaCategoria modificarTarifaCategoria;
 	private RevisarMantenimiento revisarMantenimiento;
+	private RevisarGrafico revisarGrafico; 
 	
 	private ErrorDisplay error;
 	private Notificacion notify;
@@ -70,12 +71,14 @@ public class ConsolaAdminGeneral extends JPanel implements MetodosAuxiliares, Ac
 		this.modificarInformacionSede = new ModificarInformacionSede(principal);
 		this.modificarTarifaCategoria = new ModificarTarifaCategoria(principal);
 		this.revisarMantenimiento = new RevisarMantenimiento(principal);
+		this.revisarGrafico = new RevisarGrafico(principal);
 		
 		principal.addPanel(registrarVehiculo, "RegistrarVehiculo");
 		principal.addPanel(modificarSeguros, "ModificarSeguros");
 		principal.addPanel(modificarInformacionSede, "ModificarInformacionSede");
 		principal.addPanel(modificarTarifaCategoria, "ModificarTarifaCategoria");
 		principal.addPanel(revisarMantenimiento, "RevisarMantenimiento");
+		principal.addPanel(revisarGrafico, "revisarGrafico");
 		
 		setLayout(new GridBagLayout());
 		
@@ -149,7 +152,7 @@ public class ConsolaAdminGeneral extends JPanel implements MetodosAuxiliares, Ac
 			gbc.gridy++;
 			
 			campoRevisarGraficoSede = new JButton(campos[3]);
-			campoRevisarGraficoSede.setActionCommand("REVISARGRAFICO");
+			campoRevisarGraficoSede.setActionCommand("revisarGrafico");
 			campoRevisarGraficoSede.addActionListener(this);
 			addSpace(YSpace);
 			add(campoRevisarGraficoSede, gbc);
