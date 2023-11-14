@@ -1,4 +1,4 @@
-package Interfaz.Principal;
+package Interfaz.Admin_General;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -15,6 +15,9 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Interfaz.Principal.MetodosAuxiliares;
+import Interfaz.Principal.Principal;
 
 import java.time.LocalDate;
 import java.time.Month;

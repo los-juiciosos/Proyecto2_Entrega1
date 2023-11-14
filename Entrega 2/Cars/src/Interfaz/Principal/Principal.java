@@ -36,6 +36,7 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 import Interfaz.Admin_General.ConsolaAdminGeneral;
+import Interfaz.Admin_General.MatrizFrecuencia;
 import Interfaz.Admin_Local.ConsolaAdminLocal;
 import Interfaz.Cliente.EscogerSede;
 import Interfaz.Empleados.EmpleadoInventario;
