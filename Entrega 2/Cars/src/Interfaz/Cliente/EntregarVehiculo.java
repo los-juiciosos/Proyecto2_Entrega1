@@ -52,6 +52,7 @@ public class EntregarVehiculo extends JPanel implements MetodosAuxiliares, Actio
 		volver = new JButton("VOLVER");
 		volver.setActionCommand("VOLVER");
 		volver.addActionListener(this);
+		formatButton(volver);
 		add(volver, gbc);
 		
 	}

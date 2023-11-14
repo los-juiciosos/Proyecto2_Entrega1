@@ -65,6 +65,7 @@ public class HacerReserva extends JPanel implements MetodosAuxiliares, ActionLis
 		volver = new JButton("VOLVER");
 		volver.setActionCommand("VOLVER");
 		volver.addActionListener(this);
+		formatButton(volver);
 		add(volver, gbc);
 
 	}

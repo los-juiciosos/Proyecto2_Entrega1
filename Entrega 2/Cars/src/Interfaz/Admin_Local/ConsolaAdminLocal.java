@@ -63,6 +63,7 @@ public class ConsolaAdminLocal extends JPanel implements MetodosAuxiliares, Acti
         volver = new JButton("LOGOUT");
 		volver.setActionCommand("login");
 		volver.addActionListener(this);
+		formatButton(volver);
 		
          add(crearClienteButton,gbc);
          gbc.gridx = 1;

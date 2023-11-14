@@ -60,6 +60,7 @@ public class ConsolaAdminGeneral extends JPanel implements MetodosAuxiliares, Ac
 	private ErrorDisplay error;
 	private Notificacion notify;
 	private Verify verificador;
+	private JButton logOut;
 	
 	private GridBagConstraints gbc;
 	
@@ -115,6 +116,11 @@ public class ConsolaAdminGeneral extends JPanel implements MetodosAuxiliares, Ac
 		add(generarLog, gbc);
 		gbc.gridy++;
 		
+		logOut = new JButton("LOG OUT");
+        formatButton(logOut);
+        logOut.setActionCommand("login");
+        logOut.addActionListener(this);
+        add(logOut,gbc);
 		
 		
 		setVisible(true);
@@ -206,7 +212,11 @@ private void addCamposTexto() {
 	public void actionPerformed(ActionEvent e) {
 		String grito = e.getActionCommand();
 		
-		if (grito.equals("BAJA")) {
+		if (grito.equals("login")) {
+			principal.cambiarPanel(grito);
+		}
+		
+		else if (grito.equals("BAJA")) {
 			Properties pVehiculo = principal.cargaArchivos.cargarVehiculos();
 			if (verificador.verifyExistPlaca(pVehiculo, bajaVehiculo.getText()) == false) {
 				error = new ErrorDisplay("PORFAVOR INGRESE UNA PLACA VALIDA");

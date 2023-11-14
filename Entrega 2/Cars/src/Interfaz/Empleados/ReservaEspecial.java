@@ -66,6 +66,7 @@ public class ReservaEspecial extends JPanel implements MetodosAuxiliares, Action
 		volver = new JButton("VOLVER");
 		volver.setActionCommand("VOLVER");
 		volver.addActionListener(this);
+		formatButton(volver);
         
 		
 		add(instruccion,gbc);
