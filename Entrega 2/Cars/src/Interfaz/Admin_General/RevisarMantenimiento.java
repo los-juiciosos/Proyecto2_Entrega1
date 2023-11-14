@@ -165,5 +165,31 @@ public class RevisarMantenimiento extends JPanel implements MetodosAuxiliares, A
 			
 		}
 		
+	@Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        Graphics2D g2d = (Graphics2D) g;
+
+        int width = getWidth();
+        int height = getHeight();
+
+        // Define the start and end points for the gradient
+        Point2D start = new Point2D.Float(0, 0);
+        Point2D end = new Point2D.Float(0, height);
+
+        // Define the colors for the gradient
+        Color color1 = new Color(255, 165, 0);
+        Color color2 = Color.PINK;
+
+        // Create a gradient paint
+        GradientPaint gradientPaint = new GradientPaint(start, color1, end, color2);
+
+        // Set the paint for the graphics context
+        g2d.setPaint(gradientPaint);
+
+        // Fill the background with the gradient paint
+        g2d.fillRect(0, 0, width, height);
+    }
 	}
 	

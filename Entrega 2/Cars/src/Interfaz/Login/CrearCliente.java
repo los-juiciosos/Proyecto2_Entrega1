@@ -1,5 +1,6 @@
 package Interfaz.Login;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -34,8 +35,7 @@ public class CrearCliente extends JDialog implements MetodosAuxiliares,ActionLis
 	private JTextField campoFoto;
 	private ErrorDisplay error;
 	
-	public CrearCliente(Principal principal) {
-		
+	public CrearCliente(Principal principal) {		
 		super(principal, "Crear Usuario", true);
 		this.principal = principal;
 		this.listaCampos = new ArrayList<JTextField>();
@@ -59,6 +59,8 @@ public class CrearCliente extends JDialog implements MetodosAuxiliares,ActionLis
 		setResizable(false);
 		
 		pack();
+		
+		setBackground(Color.ORANGE);
 		
 		setVisible(true);
 	}

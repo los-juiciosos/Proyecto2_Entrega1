@@ -183,7 +183,7 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 					 GradientPaint gradient = new GradientPaint(start, cutePurple, end, cuteYellow);
 					 g2d.setPaint(gradient);
 					
-				} else if (frecuencia < 3){
+				} else if (frecuencia < 2){
 					Point2D start = new Point2D.Float(x, y); // Starting point of the gradient
 					Point2D end = new Point2D.Float((float)start.getX()+gridSize, (float)start.getY()+gridSize);
 					GradientPaint gradient = new GradientPaint(start, Color.BLACK, end, Color.WHITE);
@@ -200,7 +200,7 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 				g2d.draw(rectangle);
 			} 
 		
-		//Añadir notacion
+		//Añadir notacion 100%
 		int x = 3*gridSize + margenX;
 		int y = cuadricula.length*gridSize + margenY + 20;
 		
@@ -215,6 +215,38 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 		
 		setTextFont(g);
 		g.drawString("100%",x+gridSize+5,y + gridSize -5);
+		
+		//Añadir notacion 99-50%
+		x = 7*gridSize + margenX;
+		y = cuadricula.length*gridSize + margenY + 20;
+		
+		start = new Point2D.Float(x, y); // Starting point of the gradient
+		end = new Point2D.Float((float)start.getX()+gridSize, (float)start.getY()+gridSize);
+		gradient = new GradientPaint(start, Color.BLACK, end, Color.WHITE);
+		g2d.setPaint(gradient);
+		
+		rectangle = new  RoundRectangle2D.Double(x,y,gridSize,gridSize,20,20);
+		g2d.fill(rectangle);
+		g2d.draw(rectangle);
+		
+		setTextFont(g);
+		g.drawString("99%-50%",x+gridSize+5,y + gridSize -5);
+		
+		//Añadir notacion 100%
+		x = 11*gridSize + margenX;
+		y = cuadricula.length*gridSize + margenY + 20;
+		
+		start = new Point2D.Float(x, y); // Starting point of the gradient
+		end = new Point2D.Float((float)start.getX()+gridSize, (float)start.getY()+gridSize);
+		gradient = new GradientPaint(start, Color.RED, end, Color.BLUE);
+		g2d.setPaint(gradient);
+		
+		rectangle = new  RoundRectangle2D.Double(x,y,gridSize,gridSize,20,20);
+		g2d.fill(rectangle);
+		g2d.draw(rectangle);
+		
+		setTextFont(g);
+		g.drawString("49%-0%",x+gridSize+5,y + gridSize -5);
 	}
 	
 	@Override

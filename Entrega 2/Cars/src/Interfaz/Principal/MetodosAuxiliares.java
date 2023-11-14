@@ -65,14 +65,16 @@ public interface MetodosAuxiliares {
 		button.setAlignmentX(Component.LEFT_ALIGNMENT);
         Border whiteLineBorder = BorderFactory.createLineBorder(Color.WHITE, 2, true);
         button.setBorder(whiteLineBorder);
-		button.setBackground(Color.PINK);
+        Color globalTheme = new Color(227, 36, 43);
+		button.setBackground(globalTheme);
 		button.setFont(new Font("Arial", Font.BOLD, 16));
 		button.setForeground(Color.WHITE);
 	}
 	
 	default public void setTextFont(Graphics g) {
-		Font font = new Font("Arial", Font.BOLD, 18);
+		Font font = new Font("Arial", Font.BOLD, 14);
         g.setFont(font);
+        g.setColor(Color.black);
 	}
 	
 	

@@ -1,2 +1,10 @@
 #
-#Mon Nov 13 22:04:10 COT 2023
+#Mon Nov 13 23:21:40 COT 2023
+1Guido=01/01/2023;18\:00;05/01/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
+2Guido=01/03/2023;18\:00;05/03/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
+3Guido=10/07/2023;18\:00;27/07/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
+4Guido=13/07/2023;18\:00;15/07/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
+5Guido=17/07/2023;18\:00;19/07/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
+6Guido=06/09/2023;18\:00;11/09/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
+7Guido=24/12/2023;18\:00;30/12/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
+8Guido=04/10/2023;18\:00;05/10/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
