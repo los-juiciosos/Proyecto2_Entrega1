@@ -1,19 +1,27 @@
 package Interfaz.Cliente;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 
 import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
+import Interfaz.Principal.MetodosAuxiliares;
 import Interfaz.Principal.Principal;
 
-public class Catalogo extends JDialog {
+public class Catalogo extends JDialog implements MetodosAuxiliares {
 	
 	Principal principal;
 	
 	private JTable catalogo;
 	
 	private String sede;
+	
+	private JScrollPane scrollPane;
 	
 	public Catalogo(Principal principal, String sede) {
 		
@@ -24,16 +32,32 @@ public class Catalogo extends JDialog {
 		
 		setLayout(new BorderLayout());
 		
-		add(catalogo,BorderLayout.CENTER);
+		JPanel panel = newGradientPanel(cutePurple, Color.PINK);
+		setPanelBackground(panel);
+		panel.setLayout(new BorderLayout());
+		panel.setBorder(new EmptyBorder(40, 40, 40, 40));
+		panel.setBackground(cutePurple);
+//		panel.setSize(2000,2000);
 		
-		setResizable(false);
+		this.scrollPane = new JScrollPane(catalogo);
 		
-		pack();
+		panel.add(scrollPane, BorderLayout.CENTER);
+		
+		add(panel, BorderLayout.CENTER);
+		
+//		setResizable(false);
+		
+		setSize(1300,250);
 		
 		setVisible(true);
 				
 	}
 	
+	private void setPanelBackground(JPanel panel) {
+		
+		
+	}
+
 	private JTable crearCatalogo() {
 		
 		String[] columnNames = {"Placa", "Marca", "Modelo", 
@@ -42,7 +66,11 @@ public class Catalogo extends JDialog {
 		
 		Object[][] valores = principal.cargaArchivos.cargarAutos(sede);
 		
-		return new JTable(valores, columnNames);
+		JTable tabla = new JTable(valores, columnNames);
+		
+		formatJTable(tabla);
+				
+		return tabla;
 		
 	}
 }

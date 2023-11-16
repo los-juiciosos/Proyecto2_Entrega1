@@ -41,12 +41,12 @@ public class ModificarTarifaCategoria extends JPanel implements MetodosAuxiliare
 	
 	static final int textFieldSize = 20;
 	
-	static final int YSpace = 20;
+	static final int YSpace = 5;
 	
 	private JTextField nuevaTarifa;
 	
 	private JButton confirmar;
-	private JButton logOut;
+	private JButton volver;
 	private ErrorDisplay error;
 	private Notificacion notify;
 	private JComboBox<String> seguros;
@@ -64,22 +64,21 @@ public class ModificarTarifaCategoria extends JPanel implements MetodosAuxiliare
 		subTitleText(instruccion);
 		
 		add(instruccion, gbc);
-		
 		gbc.gridy++;
 
 		String[] listaSeguros = {"lujo", "clasico", "todoterreno", "van", "tractor", "suv"};
 		seguros = new JComboBox<>(listaSeguros);
-		add(seguros, gbc);
 		addSpace(YSpace);
+		add(seguros, gbc);
 		gbc.gridy++;
+		addSpace(YSpace);
 		
 		nuevaTarifa = new JTextField(textFieldSize);
 		ponerTextitoGris(nuevaTarifa, "Ingrese la nueva tarifa");
 		addSpace(YSpace);
         add(nuevaTarifa,gbc);
-        addSpace(YSpace);
-        addSpace(YSpace);
         gbc.gridy++;
+        addSpace(YSpace*3);
 	
 		confirmar = new JButton("Confirmar");
         formatButton(confirmar);
@@ -88,13 +87,13 @@ public class ModificarTarifaCategoria extends JPanel implements MetodosAuxiliare
         add(confirmar,gbc);
         gbc.gridy++;
         
-        logOut = new JButton("LOG OUT");
-        formatButton(logOut);
-        logOut.setActionCommand("login");
-        logOut.addActionListener(this);
-        add(logOut,gbc);
-        addSpace(YSpace);
+        volver = new JButton("Volver");
+        formatButton(volver);
+        volver.setActionCommand("consolaAdminGeneral");
+        volver.addActionListener(this);
+        add(volver,gbc);
         gbc.gridy++;
+        addSpace(YSpace);
         
 		setVisible(true);
 	}
@@ -107,7 +106,7 @@ public class ModificarTarifaCategoria extends JPanel implements MetodosAuxiliare
 	public void actionPerformed(ActionEvent e) {
 		String grito = e.getActionCommand();
 		
-		if (grito.equals("login")) {
+		if (grito.equals("consolaAdminGeneral")) {
 			principal.cambiarPanel(grito);
 		}
 		else {

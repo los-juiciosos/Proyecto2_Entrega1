@@ -39,7 +39,7 @@ public class Login extends JPanel implements MetodosAuxiliares, ActionListener {
 	private JTextField password;
 	private JButton ingresar;
 	private JButton nuevoUsuario;
-	private CrearCliente crearCliente;
+	private PopUpCrearCliente popUpCrearCliente;
 	private Verify verifyLogin;
 	
 	public Login (Principal principal) {
@@ -53,8 +53,6 @@ public class Login extends JPanel implements MetodosAuxiliares, ActionListener {
         gbc.anchor = GridBagConstraints.WEST;
 		
 		setBackground(Principal.globalTheme);
-		
-		setSize(500, 500);
 		
 		setBorder(new EmptyBorder(40, 40, 40, 40)); //PARA PONER MARGENES
 		
@@ -121,7 +119,7 @@ public class Login extends JPanel implements MetodosAuxiliares, ActionListener {
 		String grito = e.getActionCommand();
 		
 		if (grito.equals("NUEVO")) {
-			crearCliente = new CrearCliente(principal);
+			popUpCrearCliente = new PopUpCrearCliente(principal);
 		} else if (grito.equals("INGRESAR")) {
 			String user = usuario.getText();
 			String contrasenia = password.getText();
@@ -176,8 +174,10 @@ public class Login extends JPanel implements MetodosAuxiliares, ActionListener {
         Point2D end = new Point2D.Float(0, height);
 
         // Define the colors for the gradient
-        Color color1 = Color.RED;
-        Color color2 = Color.YELLOW;
+        Color color1 = redTheme;
+//        Color color2 = Color.YELLOW;
+//        Color color2 = cuteYellow;
+        Color color2 = cutePurple;
 
         // Create a gradient paint
         GradientPaint gradientPaint = new GradientPaint(start, color1, end, color2);

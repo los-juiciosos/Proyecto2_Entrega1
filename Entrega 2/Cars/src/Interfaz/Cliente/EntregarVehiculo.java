@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -46,8 +47,13 @@ public class EntregarVehiculo extends JPanel implements MetodosAuxiliares, Actio
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		gbc.anchor = GridBagConstraints.WEST;
 		
+		JLabel instruccion = new JLabel("Rellena los campos:");
+		subTitleText(instruccion);
+		add(instruccion, gbc);
+		
 		addCampos();
 		
+		addSpace(YSpace*3);
 		confirmar = new JButton("Confirmar");
 		formatButton(confirmar);
 		confirmar.setActionCommand("menuCliente");

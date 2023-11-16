@@ -40,7 +40,7 @@ Principal principal;
 	
 	private ArrayList<JTextField> listaCampos;
 	private JButton confirmar;
-	private JButton logOut;
+	private JButton volver;
 	private ArrayList<String> campos;
 	private ErrorDisplay error;
 	private Notificacion notify;
@@ -67,6 +67,7 @@ Principal principal;
 		
 		addCampos();
 		
+		addSpace(YSpace*2);
 		confirmar = new JButton("Confirmar");
         formatButton(confirmar);
         confirmar.setActionCommand("CONFIRMAR");
@@ -74,11 +75,11 @@ Principal principal;
         add(confirmar,gbc);
         gbc.gridy++;
         
-        logOut = new JButton("LOG OUT");
-        formatButton(logOut);
-        logOut.setActionCommand("login");
-        logOut.addActionListener(this);
-        add(logOut,gbc);
+        volver = new JButton("Volver");
+        formatButton(volver);
+        volver.setActionCommand("consolaAdminGeneral");
+        volver.addActionListener(this);
+        add(volver,gbc);
         gbc.gridy++;
 		
 
@@ -118,13 +119,11 @@ Principal principal;
 	}
 
 	
-	
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String grito = e.getActionCommand();
 		
-		if (grito.equals("login")){
+		if (grito.equals("consolaAdminGeneral")){
 			principal.cambiarPanel(grito);
 		}
 		else {

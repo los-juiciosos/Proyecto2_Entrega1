@@ -16,6 +16,7 @@ import java.util.Properties;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -57,10 +58,15 @@ public class HacerReserva extends JPanel implements MetodosAuxiliares, ActionLis
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		gbc.anchor = GridBagConstraints.WEST;
 		
+		JLabel instruccion = new JLabel("Rellena los campos:");
+		subTitleText(instruccion);
+		add(instruccion, gbc);
+		
 		addCampos();
 		
 		addBoxes();
 		
+		addSpace(YSpace*2);
 		confirmar = new JButton("Confirmar");
 		formatButton(confirmar);
 		confirmar.setActionCommand("CONFIRMAR");
@@ -83,6 +89,7 @@ public class HacerReserva extends JPanel implements MetodosAuxiliares, ActionLis
         sedes.addItem(sede);
 		}
 		add(sedes,gbc);
+		addSpace(YSpace);
 		
 		ArrayList<String> todasCategorias = principal.cargaArchivos.cargarCategoria();
         
@@ -91,6 +98,7 @@ public class HacerReserva extends JPanel implements MetodosAuxiliares, ActionLis
         categorias.addItem(categoria);
 		}
 		add(categorias,gbc);
+		addSpace(YSpace);
 		
 	}
 
@@ -108,6 +116,8 @@ public class HacerReserva extends JPanel implements MetodosAuxiliares, ActionLis
             listaCampos.add(campo);
             add(campo,gbc);
 		}
+        
+        addSpace(YSpace);
 		
 	}
 	

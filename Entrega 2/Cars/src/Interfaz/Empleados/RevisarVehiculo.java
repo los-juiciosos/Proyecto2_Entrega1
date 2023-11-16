@@ -1,10 +1,15 @@
 package Interfaz.Empleados;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Point2D;
 import java.util.Properties;
 
 import javax.swing.Box;
@@ -50,7 +55,7 @@ public class RevisarVehiculo extends JPanel implements MetodosAuxiliares, Action
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.anchor = GridBagConstraints.WEST;
         
-        JLabel instruccion = new JLabel("Mandar a revisar el Auto con placa:");
+        JLabel instruccion = new JLabel("Mandar a revisar el Vehiculo:");
 		subTitleText(instruccion);
 		
 		placa = new JTextField(textFieldSize);
@@ -59,18 +64,26 @@ public class RevisarVehiculo extends JPanel implements MetodosAuxiliares, Action
 		confirmar = new JButton("Confirmar");
 		confirmar.setActionCommand("empleadoMostrador");
 		confirmar.addActionListener(this);
+		formatGradientButton(confirmar, cuteYellow, Color.PINK); 
 		
 		volver = new JButton("VOLVER");
 		volver.setActionCommand("VOLVER");
 		volver.addActionListener(this);
+		formatGradientButton(volver, Color.PINK, cutePurple);
+		
 		
 		add(instruccion, gbc);
+		addSpace(YSpace);
 		
 		add(placa, gbc);
 		
+		addSpace(YSpace*4);
 		add(confirmar, gbc);
 		
+		addSpace(YSpace*2);
 		add(volver,gbc);
+		
+		requestFocus(null);
 		
 	}
 	
@@ -111,5 +124,33 @@ public class RevisarVehiculo extends JPanel implements MetodosAuxiliares, Action
 	private void addSpace(int Yspace) {
 		add(Box.createRigidArea(new Dimension(0, Yspace)), gbc);
 	}
+	
+	@Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        Graphics2D g2d = (Graphics2D) g;
+
+        int width = getWidth();
+        int height = getHeight();
+
+        // Define the start and end points for the gradient
+        Point2D start = new Point2D.Float(0, 0);
+        Point2D end = new Point2D.Float(0, height);
+
+        // Define the colors for the gradient
+//        Color color1 = new Color(255, 165, 0);
+        Color color1 = cuteYellow;
+        Color color2 = Color.PINK;
+
+        // Create a gradient paint
+        GradientPaint gradientPaint = new GradientPaint(start, color1, end, color2);
+
+        // Set the paint for the graphics context
+        g2d.setPaint(gradientPaint);
+
+        // Fill the background with the gradient paint
+        g2d.fillRect(0, 0, width, height);
+    }
 
 }

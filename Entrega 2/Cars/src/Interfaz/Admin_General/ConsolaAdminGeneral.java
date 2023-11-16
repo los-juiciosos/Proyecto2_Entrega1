@@ -38,7 +38,7 @@ public class ConsolaAdminGeneral extends JPanel implements MetodosAuxiliares, Ac
 	private Principal principal;
 	
 
-	static final int textFieldSize = 20;
+	static final int textFieldSize = 15;
 	static final int YSpace = 5;
 	private JTextField bajaVehiculo;
 	private JButton darBaja;
@@ -82,6 +82,7 @@ public class ConsolaAdminGeneral extends JPanel implements MetodosAuxiliares, Ac
 		principal.addPanel(revisarGrafico, "revisarGrafico");
 		
 		setLayout(new GridBagLayout());
+		setBorder(new EmptyBorder(40, 40, 40, 40));
 		
 		this.gbc = new GridBagConstraints();
 		
@@ -92,18 +93,27 @@ public class ConsolaAdminGeneral extends JPanel implements MetodosAuxiliares, Ac
         JLabel info = new JLabel("Eliga la opción con la que desea trabajar");
 		titleText(info);
         
+		gbc.gridwidth = 2;
 		add(info, gbc);
+		gbc.gridwidth = 1;
 		gbc.gridy++;
+		addSpace(YSpace*4);
 		
 		addCamposBotones();
 		
+		JLabel instruccion = new JLabel("Ingresa una placa:");
+		subTitleText(instruccion);
+		addSpace(YSpace*2);
+		add(instruccion, gbc);
+		
 		bajaVehiculo = new JTextField(textFieldSize);
-		ponerTextitoGris(bajaVehiculo, "Inserte una Placa");
+		ponerTextitoGris(bajaVehiculo, "Placa");
+		addSpace(YSpace);
 		add(bajaVehiculo, gbc);
 		gbc.gridy++;
 		
 		darBaja = new JButton("Dar de Baja");
-		formatButton(darBaja);
+		formatButton(darBaja, -40);
 		darBaja .setActionCommand("BAJA");
 		darBaja .addActionListener(this);
 		addSpace(YSpace);
@@ -111,23 +121,22 @@ public class ConsolaAdminGeneral extends JPanel implements MetodosAuxiliares, Ac
 		gbc.gridy++;
 		
 		generarLog = new JButton("Generar Log");
-		formatButton(generarLog);
+		formatButton(generarLog, -40);
 		generarLog.setActionCommand("LOG");
 		generarLog.addActionListener(this);
 		addSpace(YSpace);
 		add(generarLog, gbc);
 		gbc.gridy++;
 		
+		gbc.anchor = GridBagConstraints.WEST;
+		addSpace(YSpace*5);
 		logOut = new JButton("LOG OUT");
-        formatButton(logOut);
+        formatGradientButton(logOut, lightOrange, Color.PINK);
         logOut.setActionCommand("login");
         logOut.addActionListener(this);
         add(logOut,gbc);
 		
-		
 		setVisible(true);
-		
-        
 	}
 	
 	
@@ -139,7 +148,7 @@ public class ConsolaAdminGeneral extends JPanel implements MetodosAuxiliares, Ac
 				"Revisar Gráfico por Sede", "Modificar Tarifa por Categoría", "Revisar Mantenimiento"};
 		
 			campoNuevoVehiculo = new JButton(campos[0]);
-			formatButton(campoNuevoVehiculo);
+			formatButton(campoNuevoVehiculo, + 50);
 			addSpace(YSpace);
 			add(campoNuevoVehiculo, gbc);
 			campoNuevoVehiculo.setActionCommand("RegistrarVehiculo");
@@ -147,7 +156,7 @@ public class ConsolaAdminGeneral extends JPanel implements MetodosAuxiliares, Ac
 			gbc.gridy++;
 			
 			campoModificarSeguro = new JButton(campos[1]);
-			formatButton(campoModificarSeguro);
+			formatButton(campoModificarSeguro, + 50);
 			campoModificarSeguro.setActionCommand("ModificarSeguros");
 			campoModificarSeguro.addActionListener(this);
 			addSpace(YSpace);
@@ -155,7 +164,7 @@ public class ConsolaAdminGeneral extends JPanel implements MetodosAuxiliares, Ac
 			gbc.gridy++;
 			
 			campoModificarSede = new JButton(campos[2]);
-			formatButton(campoModificarSede);
+			formatButton(campoModificarSede, + 50);
 			campoModificarSede.setActionCommand("ModificarInformacionSede");
 			campoModificarSede.addActionListener(this);
 			addSpace(YSpace);
@@ -163,7 +172,7 @@ public class ConsolaAdminGeneral extends JPanel implements MetodosAuxiliares, Ac
 			gbc.gridy++;
 			
 			campoRevisarGraficoSede = new JButton(campos[3]);
-			formatButton(campoRevisarGraficoSede);
+			formatButton(campoRevisarGraficoSede, + 50);
 			campoRevisarGraficoSede.setActionCommand("revisarGrafico");
 			campoRevisarGraficoSede.addActionListener(this);
 			addSpace(YSpace);
@@ -171,7 +180,7 @@ public class ConsolaAdminGeneral extends JPanel implements MetodosAuxiliares, Ac
 			gbc.gridy++;
 			
 			campoModificarCategoria = new JButton(campos[4]);
-			formatButton(campoModificarCategoria);
+			formatButton(campoModificarCategoria, + 50);
 			campoModificarCategoria.setActionCommand("ModificarTarifaCategoria");
 			campoModificarCategoria.addActionListener(this);
 			addSpace(YSpace);
@@ -179,15 +188,12 @@ public class ConsolaAdminGeneral extends JPanel implements MetodosAuxiliares, Ac
 			gbc.gridy++;
 			
 			campoRevisarMantenimiento = new JButton(campos[5]);
-			formatButton(campoRevisarMantenimiento);
+			formatButton(campoRevisarMantenimiento, + 50);
 			campoRevisarMantenimiento.setActionCommand("RevisarMantenimiento");
 			campoRevisarMantenimiento.addActionListener(this);
 			addSpace(YSpace);
 			add(campoRevisarMantenimiento, gbc);
 			gbc.gridy++;
-			
-			
-		
 	}
 	
 
@@ -265,7 +271,7 @@ private void addCamposTexto() {
         Point2D end = new Point2D.Float(0, height);
 
         // Define the colors for the gradient
-        Color color1 = new Color(255, 165, 0);
+        Color color1 = lightOrange;
         Color color2 = Color.PINK;
 
         // Create a gradient paint

@@ -44,9 +44,15 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 	
 	public static final int ancho = 1500;
 	
-	private static final int margenX = 70;
+	private static final int margenX = 80;
 	
-	private static final int margenY = 30;
+	private static final int margenY = 50;
+	
+	private static final Color[] disponible1 = {cutePurple, cuteYellow};
+	
+	private static final Color[] disponible2 = {Color.PINK, cuteYellow};
+	
+	private static final Color[] disponible3 = {redTheme, cuteYellow};
 	
 	private int carrosTotales;
 	
@@ -62,13 +68,19 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 		
 		this.carrosTotales = 0;
 		
+		this.carrosTotales = 0;
+		
 		this.gbc = new GridBagConstraints();
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.anchor = GridBagConstraints.CENTER;
+        
+        contarVehiculos();
 				
 		crearCuadricula();
 		
 		pintarCuadricula();
+		
+//		System.out.println(carrosTotales);
 						
 		setVisible(true);
 	}
@@ -97,6 +109,25 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
         return lastWeekNumber+1;
 	}
 	
+	
+	public void contarVehiculos() {
+		
+		Set<Entry<Object, Object>> entrySet = principal.cargaArchivos.cargarVehiculos().entrySet();
+		
+		for (Entry<Object, Object> entry : entrySet) {
+            String valores = (String) entry.getValue();
+            String[] datos = valores.split(";");
+            
+            String sede = datos[9];
+            
+            if (sede.equals(sedeActual)) {
+            	carrosTotales++;
+            }
+            
+            
+		}
+	}
+	
 	public void pintarCuadricula() {
 				
 		WeekFields weekFields = WeekFields.of(Locale.getDefault());
@@ -113,6 +144,7 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
             if (!sede.equals(sedeActual)) {
             	continue;
             }
+            
             
             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             
@@ -140,16 +172,39 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
-		Color cutePurple = new Color(207, 159, 255);
-		Color cuteYellow = new Color(255,253,141);
 		
 		int gridSize = alto/cuadricula.length;
+		
+		//FONDO
+
+        int width = getWidth();
+        int height = getHeight();
+
+        // Define the start and end points for the gradient
+        Point2D start1 = new Point2D.Float(0, 0);
+        Point2D end1 = new Point2D.Float(0, height);
+
+        // Define the colors for the gradient
+        Color color1 = pastelPurple;
+        Color color2 = pastelOrange;
+
+        // Create a gradient paint
+        GradientPaint gradientPaint = new GradientPaint(start1, color1, end1, color2);
+
+        // Set the paint for the graphics context
+        g2d.setPaint(gradientPaint);
+
+        // Fill the background with the gradient paint
+        g2d.fillRect(0, 0, width, height);
+		
+		
 		
 		//Añadir dias de la semana
 		String[] daysOfWeek = {"Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"};
 		for (int i = 0; i < cuadricula.length; i++) {
 	        
-	        g.drawString(daysOfWeek[i], 10 ,i*gridSize + margenY + 15);
+			setTextFont(g);
+	        g.drawString(daysOfWeek[i], margenX-72 ,i*gridSize + margenY + 15);
 			
 		}
 		
@@ -164,7 +219,8 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
             String monthName = month.getDisplayName(TextStyle.FULL, new Locale("es", "ES"));
             String capitalizedMonthName = monthName.substring(0, 1).toUpperCase() + monthName.substring(1);
             
-            g.drawString(capitalizedMonthName, firstWeekNumber*gridSize + margenX + 0, 15);
+            setTextFont(g);
+            g.drawString(capitalizedMonthName, firstWeekNumber*gridSize + margenX + 0, margenY-15);
         }
 		
 		
@@ -175,23 +231,23 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 				int x = ii*gridSize + margenX;
 				int y = i*gridSize + margenY;
 				
-				int frecuencia = cuadricula[i][ii];
-				if (frecuencia == 0) {
+				int frecuencia = carrosTotales - cuadricula[i][ii];
+				if (frecuencia == carrosTotales) {
 					
 					 Point2D start = new Point2D.Float(x, y); // Starting point of the gradient
 					 Point2D end = new Point2D.Float((float)start.getX()+gridSize, (float)start.getY()+gridSize);
-					 GradientPaint gradient = new GradientPaint(start, cutePurple, end, cuteYellow);
+					 GradientPaint gradient = new GradientPaint(start, disponible1[0], end, disponible1[1]);
 					 g2d.setPaint(gradient);
 					
-				} else if (frecuencia < 2){
+				} else if (carrosTotales*0.5 <= frecuencia && frecuencia < carrosTotales){
 					Point2D start = new Point2D.Float(x, y); // Starting point of the gradient
 					Point2D end = new Point2D.Float((float)start.getX()+gridSize, (float)start.getY()+gridSize);
-					GradientPaint gradient = new GradientPaint(start, Color.BLACK, end, Color.WHITE);
+					GradientPaint gradient = new GradientPaint(start, disponible2[0], end, disponible2[1]);
 					g2d.setPaint(gradient);
 				} else {
 					Point2D start = new Point2D.Float(x, y); // Starting point of the gradient
 					Point2D end = new Point2D.Float((float)start.getX()+gridSize, (float)start.getY()+gridSize);
-					GradientPaint gradient = new GradientPaint(start, Color.RED, end, Color.BLUE);
+					GradientPaint gradient = new GradientPaint(start, disponible3[0], end, disponible3[1]);
 					g2d.setPaint(gradient);
 				}
 				
@@ -206,7 +262,7 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 		
 		Point2D start = new Point2D.Float(x, y); // Starting point of the gradient
 		Point2D end = new Point2D.Float((float)start.getX()+gridSize, (float)start.getY()+gridSize);
-		GradientPaint gradient = new GradientPaint(start, cutePurple, end, cuteYellow);
+		GradientPaint gradient = new GradientPaint(start, disponible1[0], end, disponible1[1]);
 		g2d.setPaint(gradient);
 		
 		RoundRectangle2D.Double rectangle = new  RoundRectangle2D.Double(x,y,gridSize,gridSize,20,20);
@@ -222,7 +278,7 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 		
 		start = new Point2D.Float(x, y); // Starting point of the gradient
 		end = new Point2D.Float((float)start.getX()+gridSize, (float)start.getY()+gridSize);
-		gradient = new GradientPaint(start, Color.BLACK, end, Color.WHITE);
+		gradient = new GradientPaint(start, disponible2[0], end, disponible2[1]);
 		g2d.setPaint(gradient);
 		
 		rectangle = new  RoundRectangle2D.Double(x,y,gridSize,gridSize,20,20);
@@ -238,7 +294,7 @@ public class MatrizFrecuencia extends JPanel implements MetodosAuxiliares, Actio
 		
 		start = new Point2D.Float(x, y); // Starting point of the gradient
 		end = new Point2D.Float((float)start.getX()+gridSize, (float)start.getY()+gridSize);
-		gradient = new GradientPaint(start, Color.RED, end, Color.BLUE);
+		gradient = new GradientPaint(start, disponible3[0], end, disponible3[1]);
 		g2d.setPaint(gradient);
 		
 		rectangle = new  RoundRectangle2D.Double(x,y,gridSize,gridSize,20,20);

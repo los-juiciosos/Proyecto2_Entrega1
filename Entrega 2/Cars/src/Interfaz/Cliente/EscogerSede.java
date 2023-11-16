@@ -38,7 +38,7 @@ public class EscogerSede extends JPanel implements MetodosAuxiliares, ActionList
 	
 	static final int textFieldSize = 20;
 	
-	static final int YSpace = 20;
+	static final int YSpace = 10;
 	
 	public EscogerSede(Principal principal) {
 		
@@ -60,42 +60,44 @@ public class EscogerSede extends JPanel implements MetodosAuxiliares, ActionList
 		principal.addPanel(nuevosConductores, "nuevosConductores" );
 		
 		setLayout(new GridBagLayout());
-		GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
+		this.gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.WEST;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
 		
 		//setBackground(Principal.globalTheme);
 		
 		setSize(500, 500);
 		
 		setBorder(new EmptyBorder(40, 40, 40, 40)); //PARA PONER MARGENES
-        
+		
+		addTitulo();
 		addBotones();
 		addCatalogos();
 		
 	}
 	
+	private void addTitulo() {
+		JLabel instruccion = new JLabel("Escoge una Sede");
+		titleText(instruccion);
+		gbc.gridwidth = 2;
+		add(instruccion,gbc);
+		gbc.gridy++;
+		gbc.gridwidth = 1;
+		addSpace(YSpace);
+		
+	}
+
 	private void addBotones() {
 		
         gbc.anchor = GridBagConstraints.CENTER;
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-                
-        
-        logOut = new JButton("LOG OUT");
-		formatButton(logOut);
-		logOut.setActionCommand("login");
-		logOut.addActionListener(this);
-		add(logOut, gbc);
-		gbc.gridy++;
-		addSpace(YSpace);
 		
 		
 		for (String sede : principal.cargaArchivos.cargarSedes()) {
 			
 			JButton button = new JButton(sede);
 			
-			formatButton(button);
+			formatButton(button, pastelPurple);
 			
 			button.setActionCommand(sede);
 			
@@ -103,26 +105,38 @@ public class EscogerSede extends JPanel implements MetodosAuxiliares, ActionList
 			
 			add(button, gbc);
 			gbc.gridy++;
+			addSpace(YSpace);
 		}
+		
+		addSpace(YSpace*3);
+		gbc.gridwidth = 2;
+		logOut = new JButton("LOG OUT");
+		formatGradientButton(logOut, pastelPurple, pastelPink);
+		logOut.setActionCommand("login");
+		logOut.addActionListener(this);
+		gbc.anchor = GridBagConstraints.WEST;
+		add(logOut, gbc);
+		gbc.gridy++;
 
 	}
 	
 	private void addCatalogos() {
 
         gbc.anchor = GridBagConstraints.CENTER;
-        gbc.gridx = 1;
+        gbc.gridx = 2;
         gbc.gridy = 2;
         
 		for (String sede : principal.cargaArchivos.cargarSedes()) {
 					
 			JButton button = new JButton("Catalogo");
 			
-			formatButton(button);
+			formatButton(button, pastelPink);
 			button.setActionCommand(sede+"!");
 			button.addActionListener(this);
 			
 			add(button, gbc);
 			gbc.gridy++; 
+			addSpace(YSpace);
 		
 		}
 		
@@ -165,8 +179,8 @@ public class EscogerSede extends JPanel implements MetodosAuxiliares, ActionList
         Point2D end = new Point2D.Float(0, height);
 
         // Define the colors for the gradient
-        Color color1 = new Color(255, 165, 0);
-        Color color2 = Color.GRAY;
+        Color color1 = cutePurple;
+        Color color2 = Color.PINK;
 
         // Create a gradient paint
         GradientPaint gradientPaint = new GradientPaint(start, color1, end, color2);

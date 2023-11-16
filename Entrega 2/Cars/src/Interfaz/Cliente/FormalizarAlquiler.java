@@ -58,7 +58,7 @@ public class FormalizarAlquiler extends JPanel implements MetodosAuxiliares, Act
         gbc.gridy = 0;
 		gbc.anchor = GridBagConstraints.WEST;
 		
-		JLabel rellenar = new JLabel("Completa los siguientes campos");
+		JLabel rellenar = new JLabel("Rellena el siguiente campo:");
 		subTitleText(rellenar);
 		
 		JLabel escogeSeguro = new JLabel("Selecciona un seguro");
@@ -68,9 +68,11 @@ public class FormalizarAlquiler extends JPanel implements MetodosAuxiliares, Act
 		
 		add(rellenar, gbc);
 		gbc.gridy++;
+		addSpace(YSpace);
 		
 		add(idReserva, gbc);
 		gbc.gridy++;
+		addSpace(YSpace*3);
 
 		add(deseaAñadirConductores, gbc);
 		gbc.gridx = 1;
@@ -86,12 +88,14 @@ public class FormalizarAlquiler extends JPanel implements MetodosAuxiliares, Act
 		gbc.gridy++;
 		gbc.gridx = 0;
 		
+		addSpace(YSpace*3);
 		add(escogeSeguro,gbc);
 		gbc.gridy++;
 		
         add(seguros,gbc);
         gbc.gridy++;
         
+        addSpace(YSpace*4);
         add(confirmar, gbc);
         gbc.gridy++;
         
@@ -110,19 +114,19 @@ public class FormalizarAlquiler extends JPanel implements MetodosAuxiliares, Act
 		idReserva = new JTextField(textFieldSize);
         ponerTextitoGris(idReserva, "ID de reserva");
         
-        deseaAñadirConductores = new JLabel("Desea añadir nuevos conductores?");
+        deseaAñadirConductores = new JLabel("Desea añadir nuevos conductores? ");
         subTitleText(deseaAñadirConductores);
         
-        deseaCambiarReserva = new JLabel("Desea cambiar datos de su reserva?");
+        deseaCambiarReserva = new JLabel("Desea cambiar datos de su reserva? ");
         subTitleText(deseaCambiarReserva);
         
-        nuevosConductores = new JButton("aqui va una foto");
-		formatButton(nuevosConductores);
+        nuevosConductores = new JButton("→");
+		formatLeftArrowButton(nuevosConductores);
 		nuevosConductores.setActionCommand("nuevosConductores");
 		nuevosConductores.addActionListener(this);
 		
-		cambiarReserva = new JButton("aqui va una foto");
-		formatButton(cambiarReserva);
+		cambiarReserva = new JButton("→");
+		formatLeftArrowButton(cambiarReserva);
 		cambiarReserva.setActionCommand("cambiarReserva");
 		cambiarReserva.addActionListener(this);
 		
@@ -140,6 +144,7 @@ public class FormalizarAlquiler extends JPanel implements MetodosAuxiliares, Act
 
 	private void addSpace(int Yspace) {
 		add(Box.createRigidArea(new Dimension(0, Yspace)), gbc);
+		gbc.gridy++;
 	}
 
 	@Override

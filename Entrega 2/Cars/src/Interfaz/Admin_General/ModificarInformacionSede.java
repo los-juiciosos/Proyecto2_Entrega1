@@ -48,7 +48,7 @@ public class ModificarInformacionSede extends JPanel implements MetodosAuxiliare
 	private JComboBox<String> aspectos;
 	private JComboBox<String> sedes;
 	private JButton confirmar;
-	private JButton logOut;
+	private JButton volver;
 	private ErrorDisplay error;
 	private Verify verificador;
 	private Notificacion notify;
@@ -84,11 +84,10 @@ public class ModificarInformacionSede extends JPanel implements MetodosAuxiliare
 		aspectos = new JComboBox<>(listaAspectos);
 		add(aspectos, gbc);
 		addSpace(YSpace);
-		addSpace(YSpace);
 		gbc.gridy++;
 		
 		nuevoAspecto = new JTextField(textFieldSize);
-		ponerTextitoGris(nuevoAspecto, "Información para el aspecto a cambiar:");
+		ponerTextitoGris(nuevoAspecto, "Información del aspecto a cambiar:");
 		add(nuevoAspecto, gbc);
 		addSpace(YSpace);
 		addSpace(YSpace);
@@ -101,11 +100,11 @@ public class ModificarInformacionSede extends JPanel implements MetodosAuxiliare
         add(confirmar,gbc);
         gbc.gridy++;
         
-        logOut = new JButton("LOG OUT");
-        formatButton(logOut);
-        logOut.setActionCommand("login");
-        logOut.addActionListener(this);
-        add(logOut,gbc);
+        volver = new JButton("Volver");
+        formatButton(volver);
+        volver.setActionCommand("consolaAdminGeneral");
+        volver.addActionListener(this);
+        add(volver,gbc);
         addSpace(YSpace);
         gbc.gridy++;
         
@@ -128,7 +127,7 @@ public class ModificarInformacionSede extends JPanel implements MetodosAuxiliare
 	public void actionPerformed(ActionEvent e) {
 		String grito = e.getActionCommand();
 		
-		if (grito.equals("login")) {
+		if (grito.equals("consolaAdminGeneral")) {
 			principal.cambiarPanel(grito);
 		}
 		else {

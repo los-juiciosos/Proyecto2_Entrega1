@@ -106,12 +106,12 @@ public class Principal extends JFrame implements EventListener {
 		mainPanel.add(consolaAdminGeneral,"consolaAdminGeneral");
 		mainPanel.add(empleadoInventario,"empleadoInventario");
 		mainPanel.add(empleadoMostrador,"empleadoMostrador");
-		
-		centerWindow();
-        pack();
+//        pack();
+		setSize(1050,550);
         cardLayout.show(mainPanel,"login");
+        
+        centerWindow();
 		setVisible(true);
-				
 	}
 	
 	public void cambiarPanel(String panel){
@@ -130,6 +130,7 @@ public class Principal extends JFrame implements EventListener {
 
         setLocation(x, y);
 	}
+	
 	public void setSedeActual(String nombre) {
 		sedeActual = nombre;
 	}
@@ -139,6 +140,8 @@ public class Principal extends JFrame implements EventListener {
 	public static void main(String[] args) {
 		
 		Principal principal = new Principal();
+		System.out.println(principal.getWidth());
+		System.out.println(principal.getHeight());
 		
 	}
 	

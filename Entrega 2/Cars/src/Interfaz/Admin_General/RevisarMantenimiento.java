@@ -41,13 +41,13 @@ public class RevisarMantenimiento extends JPanel implements MetodosAuxiliares, A
 	
 	static final int textFieldSize = 20;
 	
-	static final int YSpace = 20;
+	static final int YSpace = 5;
 	
 	private JTextField nuevaTarifa;
 	private JComboBox<String> seguros;
 	private JButton consultar;
 	private JButton confirmar;
-	private JButton logOut;
+	private JButton volver;
 	private JLabel titulo;
 	private JLabel placa;
 	
@@ -65,8 +65,9 @@ public class RevisarMantenimiento extends JPanel implements MetodosAuxiliares, A
         
         placa = new JLabel("Placa del vehículo: ");
         subTitleText(placa);
-        add(placa);
+        add(placa, gbc);
         gbc.gridy++;
+        addSpace(YSpace);
         
         consultar = new JButton("Consultar");
         formatButton(consultar);
@@ -79,21 +80,21 @@ public class RevisarMantenimiento extends JPanel implements MetodosAuxiliares, A
 		nuevaTarifa = new JTextField(textFieldSize);
 		nuevaTarifa.setEditable(false);
         add(nuevaTarifa,gbc);
-        addSpace(YSpace);
-        addSpace(YSpace);
         gbc.gridy++;
+        addSpace(YSpace*2);
         
         JLabel instruccion = new JLabel("¿Dar de baja?");
 		subTitleText(instruccion);
 		
 		add(instruccion, gbc);
 		gbc.gridy++;
+		addSpace(YSpace);
 
 		String[] listaSeguros = {"Si", "No"};
 		seguros = new JComboBox<>(listaSeguros);
 		add(seguros, gbc);
-		addSpace(YSpace);
 		gbc.gridy++;
+		addSpace(YSpace*2);
 		
 	
 		confirmar = new JButton("Confirmar");
@@ -103,11 +104,11 @@ public class RevisarMantenimiento extends JPanel implements MetodosAuxiliares, A
         add(confirmar,gbc);
         gbc.gridy++;
         
-        logOut = new JButton("LOG OUT");
-        formatButton(logOut);
-        logOut.setActionCommand("login");
-        logOut.addActionListener(this);
-        add(logOut,gbc);
+        volver = new JButton("Volver");
+        formatButton(volver);
+        volver.setActionCommand("consolaAdminGeneral");
+        volver.addActionListener(this);
+        add(volver,gbc);
         addSpace(YSpace);
         gbc.gridy++;
         
@@ -125,7 +126,7 @@ public class RevisarMantenimiento extends JPanel implements MetodosAuxiliares, A
 	public void actionPerformed(ActionEvent e) {
 		String grito = e.getActionCommand();
 		
-		if (grito.equals("login")) {
+		if (grito.equals("consolaAdminGeneral")) {
 			principal.cambiarPanel(grito);
 		}
 		else {
