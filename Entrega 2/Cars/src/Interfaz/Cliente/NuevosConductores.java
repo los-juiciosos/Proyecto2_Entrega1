@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -36,6 +37,7 @@ public class NuevosConductores extends JPanel implements MetodosAuxiliares, Acti
 	private Verify verificador = new Verify();
 	private JTextField foto;
 	private ErrorDisplay error;
+	private JButton volver;
 	
 	public NuevosConductores(Principal principal) {
 		
@@ -46,6 +48,12 @@ public class NuevosConductores extends JPanel implements MetodosAuxiliares, Acti
 		this.gbc = new GridBagConstraints();
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		gbc.anchor = GridBagConstraints.WEST;
+		
+		JLabel instruccion = new JLabel("Relleno los siguientes campos: ");
+		subTitleText(instruccion);
+		
+		add(instruccion, gbc);
+		addSpace(YSpace);
 		
 		addCampos();
 		
@@ -65,6 +73,13 @@ public class NuevosConductores extends JPanel implements MetodosAuxiliares, Acti
 		confirmar.setActionCommand("formalizarAlquiler");
 		confirmar.addActionListener(this);
 		add(confirmar,gbc);
+		
+		volver = new JButton("Volver");
+        formatButton(volver);
+        volver.setActionCommand("VOLVER");
+        volver.addActionListener(this);
+        add(volver,gbc);
+        gbc.gridy++;
 	}
 	
 	private void addCampos() {
@@ -86,7 +101,11 @@ public class NuevosConductores extends JPanel implements MetodosAuxiliares, Acti
 		
 		String grito = e.getActionCommand();
 		
-		if (grito.equals("FOTO")) {
+		if (grito.equals("VOLVER")) {
+			principal.cambiarPanel("formalizarAlquiler");
+		}
+		
+		else if (grito.equals("FOTO")) {
 			String fotoName = verificador.chooseFile();
 			if (fotoName == null) {
 				fotoName = "ERROR";
@@ -134,7 +153,7 @@ public class NuevosConductores extends JPanel implements MetodosAuxiliares, Acti
 
         // Define the colors for the gradient
         Color color1 = new Color(255, 165, 0);
-        Color color2 = Color.MAGENTA;
+        Color color2 = Color.PINK;
 
         // Create a gradient paint
         GradientPaint gradientPaint = new GradientPaint(start, color1, end, color2);
