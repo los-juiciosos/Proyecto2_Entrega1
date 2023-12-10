@@ -1,5 +1,11 @@
-#
-#Sun Dec 10 15:11:38 COT 2023
+#uwu
+#Sun Dec 10 15:43:56 COT 2023
+8Guido=04/10/2023;18\:00;05/10/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
+5Guido=17/07/2023;18\:00;19/07/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
+6Guido=06/09/2023;18\:00;11/09/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
+7Guido=24/12/2023;18\:00;30/12/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
+8Guido=04/10/2023;18\:00;05/10/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
+9Guido=05/08/2023;18\:00;20/08/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
 10Guido=09/08/2023;18\:00;15/08/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
 11Guido=09/08/2023;18\:00;15/08/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
 12Guido=09/08/2023;18\:00;15/08/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0

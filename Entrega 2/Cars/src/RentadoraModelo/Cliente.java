@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -97,6 +98,7 @@ public class Cliente extends Usuario {
 		Vehiculo carroEscogido = reservaActual.obtenerVehiculo(sedeEntrega,categoriaVehiculo);
 		if (carroEscogido == null) {
 			reservaActual.setCarroEscogido(null);
+			System.out.println("CARRO OBNENDE");
 			return null;
 		}
 		else {
@@ -120,7 +122,6 @@ public class Cliente extends Usuario {
 		String idReserva = reservaActual.getId()+ nombre;
 		pReserva.put(idReserva, registroReserva);
 		guardarLogin(pReserva,"Reservas");
-		
 		return reservaActual;
 		}
 		catch (Exception e) {
@@ -214,9 +215,11 @@ public class Cliente extends Usuario {
 	
 	public void guardarLogin(Properties p,String name) {
 		try {
+//		FileOutputStream fileOutputStream2 = new FileOutputStream(new File ("./RentadoraStorage/"+name+".txt"));
+//		p.store(fileOutputStream2, "uwu");
 		p.save(new FileOutputStream(new File ("./RentadoraStorage/"+name+".txt")),"");
 		}
-		catch(FileNotFoundException e) {
+		catch(IOException e) {
 			System.err.println("File not found: " + e.getMessage());
 		}
 	}

@@ -1,4 +1,4 @@
-package Interfaz.Login;
+package AplicacionClientes;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -24,16 +24,15 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import AplicacionClientes.AplicacionClientes;
 import Interfaz.Principal.ErrorDisplay;
 import Interfaz.Principal.MetodosAuxiliares;
 import Interfaz.Principal.Principal;
 import Interfaz.Principal.Verify;
 import RentadoraModelo.Cliente;
 
-public class Login extends JPanel implements MetodosAuxiliares, ActionListener {
+public class Login2 extends JPanel implements MetodosAuxiliares, ActionListener {
 	
-	private Principal principal;
+	private AplicacionClientes aplicacionClientes;
 	private JLabel nombreEmpresa;
 	private JLabel bienvenida;
 	private JTextField usuario;
@@ -42,9 +41,9 @@ public class Login extends JPanel implements MetodosAuxiliares, ActionListener {
 	private JButton nuevoUsuario;
 	private Verify verifyLogin;
 	
-	public Login (Principal principal) {
+	public Login2 (AplicacionClientes aplicacionClientes) {
 		
-		this.principal = principal;
+		this.aplicacionClientes = aplicacionClientes;
 		this.verifyLogin = new Verify();
 		
 		setLayout(new GridBagLayout());
@@ -56,7 +55,7 @@ public class Login extends JPanel implements MetodosAuxiliares, ActionListener {
 		
 		setBorder(new EmptyBorder(40, 40, 40, 40)); //PARA PONER MARGENES
 		
-		nombreEmpresa = new JLabel("Cuchau Motors");
+		nombreEmpresa = new JLabel("Aplicacion para Clientes");
 		titleText(nombreEmpresa);
 		
 		bienvenida = new JLabel("Ingresa tu usuario y contraseña");
@@ -119,36 +118,36 @@ public class Login extends JPanel implements MetodosAuxiliares, ActionListener {
 		String grito = e.getActionCommand();
 		
 		if (grito.equals("NUEVO")) {
-			principal.cambiarPanel("crearCliente");
+			aplicacionClientes.cambiarPanel("crearCliente");
 		} else if (grito.equals("INGRESAR")) {
 			String user = usuario.getText();
 			String contrasenia = password.getText();
-			Properties pLogin = principal.cargaArchivos.cargarLogin();
+			Properties pLogin = aplicacionClientes.cargaArchivos.cargarLogin();
 			
 			boolean verify = verifyLogin.checkLogin(pLogin, user, contrasenia);
 			
 			if (verify == true) {		
 				String rol = verifyLogin.getRol(pLogin, user);
-				principal.usernameActual = user;
+				aplicacionClientes.usernameActual = user;
 				if (rol.equals("cliente")) {
-					principal.usuarioActual = principal.cargaArchivos.cargarCliente(pLogin,user);
-					principal.cambiarPanel("escogerSede");
+					aplicacionClientes.usuarioActual = aplicacionClientes.cargaArchivos.cargarCliente(pLogin,user);
+					aplicacionClientes.cambiarPanel("escogerSede");
 				}
 				else if (rol.equals("general")) {
-					principal.usuarioActual = principal.cargaArchivos.cargarGeneral(pLogin, user);
-					principal.cambiarPanel("consolaAdminGeneral");
+					aplicacionClientes.usuarioActual = aplicacionClientes.cargaArchivos.cargarGeneral(pLogin, user);
+					aplicacionClientes.cambiarPanel("consolaAdminGeneral");
 				}
 				else if (rol.equals("local")) {
-					principal.usuarioActual = principal.cargaArchivos.cargarLocal(pLogin, user);
-					principal.cambiarPanel("consolaAdminLocal");
+					aplicacionClientes.usuarioActual = aplicacionClientes.cargaArchivos.cargarLocal(pLogin, user);
+					aplicacionClientes.cambiarPanel("consolaAdminLocal");
 				}
 				else if (rol.equals("mostrador")) {
-					principal.usuarioActual = principal.cargaArchivos.cargarMostrador(pLogin, user);
-					principal.cambiarPanel("empleadoMostrador");
+					aplicacionClientes.usuarioActual = aplicacionClientes.cargaArchivos.cargarMostrador(pLogin, user);
+					aplicacionClientes.cambiarPanel("empleadoMostrador");
 				}
 				else if (rol.equals("inventario")) {
-					principal.usuarioActual = principal.cargaArchivos.cargarEmpInventario(pLogin, user);
-					principal.cambiarPanel("empleadoInventario");
+					aplicacionClientes.usuarioActual = aplicacionClientes.cargaArchivos.cargarEmpInventario(pLogin, user);
+					aplicacionClientes.cambiarPanel("empleadoInventario");
 				}
 			}
 			else {
@@ -174,10 +173,10 @@ public class Login extends JPanel implements MetodosAuxiliares, ActionListener {
         Point2D end = new Point2D.Float(0, height);
 
         // Define the colors for the gradient
-        Color color1 = redTheme;
+        Color color1 = Color.PINK;
 //        Color color2 = Color.YELLOW;
 //        Color color2 = cuteYellow;
-        Color color2 = cutePurple;
+        Color color2 = redTheme;
 
         // Create a gradient paint
         GradientPaint gradientPaint = new GradientPaint(start, color1, end, color2);
