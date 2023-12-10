@@ -48,11 +48,12 @@ import RentadoraModelo.Sede;
 
 public class Principal extends JFrame implements EventListener {
 	
-	public boolean estadoTransaccion;
-	public boolean estadoTarjeta;
-	public Pagos transaccion;
-	public String porcentaje;
-	public double precioActual;
+	public static String devolverPago;
+	public static boolean estadoTransaccion;
+	public static boolean estadoTarjeta;
+	public static Pagos transaccion;
+	public static String porcentaje;
+	public static double precioActual;
 	public static String usernameActual;
 	public static String idReservaActual;
 	public static Object usuarioActual;
@@ -65,7 +66,6 @@ public class Principal extends JFrame implements EventListener {
 	private EmpleadoInventarioIn empleadoInventario;
 	private EmpleadoMostradorIn empleadoMostrador;
 	private EscogerSede escogerSede;
-	private RealizarPago realizarPago;
 	
 	public static final Color globalTheme = new Color(227, 36, 43); //El color base de la aplicacion 
 	private CardLayout cardLayout;
@@ -98,7 +98,6 @@ public class Principal extends JFrame implements EventListener {
 		this.consolaAdminGeneral = new ConsolaAdminGeneral(this);
 		this.empleadoInventario = new EmpleadoInventarioIn(this);
 		this.empleadoMostrador = new EmpleadoMostradorIn(this);
-		this.realizarPago = new RealizarPago(this);
 		
         BufferedImage originalImage; //LOGO DE CARS
 		try {
@@ -116,7 +115,6 @@ public class Principal extends JFrame implements EventListener {
 		mainPanel.add(consolaAdminGeneral,"consolaAdminGeneral");
 		mainPanel.add(empleadoInventario,"empleadoInventario");
 		mainPanel.add(empleadoMostrador,"empleadoMostrador");
-		mainPanel.add(realizarPago, "realizarPago");
 //        pack();
 		setSize(1050,550);
         cardLayout.show(mainPanel,"login");

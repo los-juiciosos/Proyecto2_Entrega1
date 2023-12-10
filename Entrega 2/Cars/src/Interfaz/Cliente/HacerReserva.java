@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Interfaz.Pagos.RealizarPago;
 import Interfaz.Principal.ErrorDisplay;
 import Interfaz.Principal.MetodosAuxiliares;
 import Interfaz.Principal.Notificacion;
@@ -194,13 +195,15 @@ public class HacerReserva extends JPanel implements MetodosAuxiliares, ActionLis
 				if (grito.equals("PAGAR")) {
 					reservaSeleccionado.setTarifa();
 					Double cobro30 = 0.3*reservaSeleccionado.getTarifa().getPrecio();
-//					Pagos transaccion = new Pagos("PayPal", cobro30, "20213120");
-					principal.estadoTarjeta = verifyTarjeta;
+					Principal.precioActual = cobro30;
+					Principal.porcentaje = "30";
+					Principal.estadoTarjeta = verifyTarjeta;
+					Principal.devolverPago = "hacerReserva";
 					
-					principal.cambiarPanel("realizarPago");
+					RealizarPago pago = new RealizarPago();
 					
 				}
-				else if (principal.estadoTransaccion == true) {
+				else if (Principal.estadoTransaccion == true) {
 					reservaSeleccionado.setTarifa();
 					
 					principal.cargaArchivos.cargarTarReserva(reservaSeleccionado, cliente);
@@ -229,7 +232,7 @@ public class HacerReserva extends JPanel implements MetodosAuxiliares, ActionLis
 				
 				principal.cambiarPanel("menuCliente");
 				     }
-				else if (principal.estadoTransaccion == false) {
+				else if (Principal.estadoTransaccion == false) {
 					error = new ErrorDisplay("NO HA PAGADO!!!!!!!!!!!!!!!!");
 				}
 				
