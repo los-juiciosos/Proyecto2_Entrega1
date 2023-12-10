@@ -41,11 +41,18 @@ import Interfaz.Cliente.EscogerSede;
 import Interfaz.Empleados.EmpleadoInventarioIn;
 import Interfaz.Empleados.EmpleadoMostradorIn;
 import Interfaz.Login.Login;
+import Interfaz.Pagos.RealizarPago;
 import RentadoraModelo.CargaArchivos;
+import RentadoraModelo.Pagos;
 import RentadoraModelo.Sede;
 
 public class Principal extends JFrame implements EventListener {
 	
+	public boolean estadoTransaccion;
+	public boolean estadoTarjeta;
+	public Pagos transaccion;
+	public String porcentaje;
+	public double precioActual;
 	public static String usernameActual;
 	public static String idReservaActual;
 	public static Object usuarioActual;
@@ -58,6 +65,7 @@ public class Principal extends JFrame implements EventListener {
 	private EmpleadoInventarioIn empleadoInventario;
 	private EmpleadoMostradorIn empleadoMostrador;
 	private EscogerSede escogerSede;
+	private RealizarPago realizarPago;
 	
 	public static final Color globalTheme = new Color(227, 36, 43); //El color base de la aplicacion 
 	private CardLayout cardLayout;
@@ -83,12 +91,14 @@ public class Principal extends JFrame implements EventListener {
         mainPanel.setLayout(cardLayout); //para cambiar entre ventanas
 		
 		//PANELES (unicos paneles no cambiar!)
+        this.estadoTransaccion = false;
 		this.escogerSede = new EscogerSede(this);
 		this.login = new Login(this);
 		this.consolaAdminLocal = new ConsolaAdminLocal(this);
 		this.consolaAdminGeneral = new ConsolaAdminGeneral(this);
 		this.empleadoInventario = new EmpleadoInventarioIn(this);
 		this.empleadoMostrador = new EmpleadoMostradorIn(this);
+		this.realizarPago = new RealizarPago(this);
 		
         BufferedImage originalImage; //LOGO DE CARS
 		try {
@@ -106,6 +116,7 @@ public class Principal extends JFrame implements EventListener {
 		mainPanel.add(consolaAdminGeneral,"consolaAdminGeneral");
 		mainPanel.add(empleadoInventario,"empleadoInventario");
 		mainPanel.add(empleadoMostrador,"empleadoMostrador");
+		mainPanel.add(realizarPago, "realizarPago");
 //        pack();
 		setSize(1050,550);
         cardLayout.show(mainPanel,"login");
@@ -138,7 +149,6 @@ public class Principal extends JFrame implements EventListener {
 		return sedeActual;
 	}
 	public static void main(String[] args) {
-		
 		Principal principal = new Principal();
 		System.out.println(principal.getWidth());
 		System.out.println(principal.getHeight());

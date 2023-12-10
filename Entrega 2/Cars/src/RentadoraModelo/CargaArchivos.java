@@ -13,6 +13,23 @@ import java.util.Properties;
 import java.util.Set;
 
 public class CargaArchivos {
+	
+	public ArrayList<String> cargarPagos(){
+		
+		Properties pSedes = new Properties();
+		try {
+		pSedes.load(new FileInputStream(new File("./transacciones/infoTransacciones.txt")));
+		ArrayList<String> sedes = new ArrayList<>();
+		for (Object sede: pSedes.keySet()) {
+			sedes.add((String)sede);
+		}
+		return sedes;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public ArrayList<String> cargarSedes(){
 		
