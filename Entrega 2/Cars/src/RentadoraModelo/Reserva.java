@@ -47,6 +47,10 @@ public class Reserva {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public static void resetId() {
+		id = 0;
+	}
 
 	public String getFechaLlegadaAgencia() {
 		return fechaLlegadaAgencia;

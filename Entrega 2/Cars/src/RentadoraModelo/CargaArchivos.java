@@ -4,10 +4,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map.Entry;
 
 import javax.swing.JTable;
+
+import Pruebas.CargaArchivoException;
 
 import java.util.Properties;
 import java.util.Set;
@@ -31,6 +34,7 @@ public class CargaArchivos {
 		return null;
 	}
 	
+	
 	public Properties cargarSeguros(){
 		Properties pSeguros = new Properties();
 		try {
@@ -51,6 +55,39 @@ public class CargaArchivos {
 			e.printStackTrace();
 		}
 		return pSeguros;
+	}
+	
+	public Vehiculo cargarVehiculoIndiv(Properties pVehiculos, String placa) {
+		String stringVehiculo = (String) pVehiculos.get(placa);
+		String[] infoVehiculo = stringVehiculo.split(";");
+		Categoria categoriaVehiculo = new Categoria(infoVehiculo[10]);
+		Vehiculo vehiculo = new Vehiculo(infoVehiculo[0],infoVehiculo[1],infoVehiculo[2],
+				infoVehiculo[3],infoVehiculo[4],infoVehiculo[5],
+				Integer.parseInt(infoVehiculo[6]),
+				Boolean.parseBoolean(infoVehiculo[7]), Boolean.parseBoolean(infoVehiculo[8]),
+				infoVehiculo[9],categoriaVehiculo);
+		return vehiculo;
+		
+	}
+	
+	public Vehiculo cargarVehiculoIndiv(String placa) throws CargaArchivoException {
+		
+		Properties pVehiculos = cargarVehiculos();
+		
+		Object info = pVehiculos.get(placa);
+		
+		if (info == null) { throw new CargaArchivoException("La placa " + placa + " no existe");}
+		
+		String stringVehiculo = (String) pVehiculos.get(placa);
+		String[] infoVehiculo = stringVehiculo.split(";");
+		Categoria categoriaVehiculo = new Categoria(infoVehiculo[10]);
+		Vehiculo vehiculo = new Vehiculo(infoVehiculo[0],infoVehiculo[1],infoVehiculo[2],
+				infoVehiculo[3],infoVehiculo[4],infoVehiculo[5],
+				Integer.parseInt(infoVehiculo[6]),
+				Boolean.parseBoolean(infoVehiculo[7]), Boolean.parseBoolean(infoVehiculo[8]),
+				infoVehiculo[9],categoriaVehiculo);
+		return vehiculo;
+		
 	}
 	
 	public ArrayList<String> cargarListaSeguros(){
@@ -251,8 +288,29 @@ public class CargaArchivos {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println(pReserva.keySet());
 		return pReserva;
 	}
+	
+	public String[] cargarReserva(String id) throws CargaArchivoException {
+		Properties pReserva = new Properties();
+
+		try {
+			pReserva.load(new FileInputStream(new File("./RentadoraStorage/Reservas.txt")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		Object info = pReserva.get(id);
+		
+		if (info == null) {throw new CargaArchivoException("La llave " + id + " no existe");}
+		
+		String infoReserva = (String) info;
+		
+		return infoReserva.split(";");
+	}
+	
+	
 	
 	public void modificarReserva(String id, String aspecto, String modificacion) {
 		Properties pReserva = cargarReserva();
@@ -268,6 +326,8 @@ public class CargaArchivos {
 		else if (aspecto.equals("Sede Entrega")) {
 			i = 6;
 		}
+		System.out.println(info.length);
+		System.out.println(infoReserva);
 		info[i] = modificacion;
 		String mensaje = String.join(";", info);
 		pReserva.put(id, mensaje);

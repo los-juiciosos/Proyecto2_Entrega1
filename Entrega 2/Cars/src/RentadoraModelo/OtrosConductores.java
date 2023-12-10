@@ -24,6 +24,10 @@ public class OtrosConductores {
 
 	//Getters & Setters
 	
+	public String getNombre() {
+		return this.nombre;
+	}
+	
 	public Licencia getLicencia() {
 		return licencia;
 	}
