@@ -27,6 +27,7 @@ import Interfaz.Principal.Principal;
 import Interfaz.Principal.Verify;
 import RentadoraModelo.Categoria;
 import RentadoraModelo.Cliente;
+import RentadoraModelo.Pagos;
 import RentadoraModelo.Reserva;
 import RentadoraModelo.Sede;
 
@@ -35,7 +36,10 @@ public class HacerReserva extends JPanel implements MetodosAuxiliares, ActionLis
 	Principal principal;
 	private JComboBox<String> sedes;
 	private JComboBox<String> categorias;
+	private JComboBox<String> metodoPago;
 	private JButton confirmar;
+	private JButton pagar;
+	private JLabel estado;
 	private GridBagConstraints gbc;
 	static final int textFieldSize = 20;
 	static final int YSpace = 5;
@@ -47,7 +51,6 @@ public class HacerReserva extends JPanel implements MetodosAuxiliares, ActionLis
 	ArrayList<String> campos = new ArrayList<String>();
 	
 	public HacerReserva(Principal principal) {
-		
 		this.principal = principal;
 		this.listaCampos = new ArrayList<JTextField>();
 		this.verificador = new Verify();
@@ -65,6 +68,19 @@ public class HacerReserva extends JPanel implements MetodosAuxiliares, ActionLis
 		addCampos();
 		
 		addBoxes();
+		addSpace(YSpace*2);
+		
+		pagar = new JButton("PAGAR");
+		pagar.setActionCommand("PAGAR");
+		pagar.addActionListener(this);
+		formatButton(pagar);
+		add(pagar, gbc);
+		
+		addSpace(YSpace*2);
+		estado = new JLabel("Pago? ...... "+principal.estadoTransaccion);
+		subTitleText(estado);
+		add(estado, gbc);
+		
 		
 		addSpace(YSpace*2);
 		confirmar = new JButton("Confirmar");
@@ -78,6 +94,7 @@ public class HacerReserva extends JPanel implements MetodosAuxiliares, ActionLis
 		volver.addActionListener(this);
 		formatButton(volver);
 		add(volver, gbc);
+		
 
 	}
 	
@@ -98,6 +115,15 @@ public class HacerReserva extends JPanel implements MetodosAuxiliares, ActionLis
         categorias.addItem(categoria);
 		}
 		add(categorias,gbc);
+		addSpace(YSpace);
+		
+		ArrayList<String> todosPagos = principal.cargaArchivos.cargarPagos();
+        
+		metodoPago = new JComboBox<>();
+		for (String paguito: todosPagos) {
+        metodoPago.addItem(paguito);
+		}
+		add(metodoPago,gbc);
 		addSpace(YSpace);
 		
 	}
@@ -125,11 +151,11 @@ public class HacerReserva extends JPanel implements MetodosAuxiliares, ActionLis
 	public void actionPerformed(ActionEvent e) {
 		
 		String grito = e.getActionCommand();
-		
+				
 		if (grito.equals("VOLVER")) {
 			principal.cambiarPanel("menuCliente");
 		}
-		else if (grito.equals("CONFIRMAR")) {	
+		else if (grito.equals("CONFIRMAR") || grito.equals("PAGAR")) {	
 			
 			String sede = (String) sedes.getSelectedItem();
 			String categoria = (String) categorias.getSelectedItem();
@@ -148,13 +174,10 @@ public class HacerReserva extends JPanel implements MetodosAuxiliares, ActionLis
 			if (verifyLleno == true) {
 			Properties pLogin = principal.cargaArchivos.cargarLogin();
 			boolean verifyTarjeta = verificador.verifyTarjetaBloqueada(pLogin, principal.usernameActual);
-			if (verifyTarjeta == false) {
-				error = new ErrorDisplay("SU TARJETA SIGUE BLOQUEADA, ENTREGUE EL CARRO ANTES DE HACER OTRA RESERVA");
-			}
-			else {	
+
+			boolean verify = verificador.verifyFechaValida(principal.sedePresente,info.get(1),info.get(3));
 				
-				boolean verify = verificador.verifyFechaValida(principal.sedePresente,info.get(1),info.get(3));
-				if (verify == true) {
+			if (verify == true) {
 				Cliente cliente = (Cliente) principal.usuarioActual;
 				
 				Categoria categoriaEscogida = new Categoria(categoria);
@@ -167,7 +190,19 @@ public class HacerReserva extends JPanel implements MetodosAuxiliares, ActionLis
 					error = new ErrorDisplay("NO SE ENCONTRO VEHICULOS ACORDES A SU BUSQUEDA,INTENTE MÁS TARDE");
 				}
 				else {
+					
+				if (grito.equals("PAGAR")) {
 					reservaSeleccionado.setTarifa();
+					Double cobro30 = 0.3*reservaSeleccionado.getTarifa().getPrecio();
+//					Pagos transaccion = new Pagos("PayPal", cobro30, "20213120");
+					principal.estadoTarjeta = verifyTarjeta;
+					
+					principal.cambiarPanel("realizarPago");
+					
+				}
+				else if (principal.estadoTransaccion == true) {
+					reservaSeleccionado.setTarifa();
+					
 					principal.cargaArchivos.cargarTarReserva(reservaSeleccionado, cliente);
 					String mensaje = "";
 					mensaje += "=======================CARACTERISTICAS RESERVA ============================\n";
@@ -182,9 +217,7 @@ public class HacerReserva extends JPanel implements MetodosAuxiliares, ActionLis
 					mensaje +="combustible: " + reservaSeleccionado.getCarroEscogido().getCombustible()+"\n";
 					mensaje +="categoria: " + reservaSeleccionado.getCarroEscogido().getCategoria().getNombre()+"\n";
 					mensaje +="=========================================================================== \n";
-					mensaje +="Ahora le cobraremos el 30% de una tarifa estimada \n";
-					mensaje +="Valor estimado total: " + reservaSeleccionado.getTarifa().getPrecio()+"\n";
-					mensaje +="Se le cobrarará: " + 0.3*reservaSeleccionado.getTarifa().getPrecio()+"\n";
+					mensaje +="Ya le cobraremos el 30% de la tarifa dada\n";
 					mensaje +="Transaccion Hecha Satisfactoriamente \n";
 					mensaje +="Reserva Guardada Satisfactoriamente \n";
 					mensaje +="=========================================================================== \n";
@@ -192,14 +225,20 @@ public class HacerReserva extends JPanel implements MetodosAuxiliares, ActionLis
 					mensaje +="RECUERDE EL ID PORQUE SINO NO PODRA FINALIZAR EL ALQUILER \n";
 					mensaje +="===========================================================================";
 					notify = new Notificacion(mensaje);
-				}
+				
 				
 				principal.cambiarPanel("menuCliente");
+				     }
+				else if (principal.estadoTransaccion == false) {
+					error = new ErrorDisplay("NO HA PAGADO!!!!!!!!!!!!!!!!");
+				}
+				
+				  }
 				}
 				else {
 					error = new ErrorDisplay("LA HORA NO ESTÁ DENTRO DEL HORARIO DE ATENCIÓN, PORFAVOR ESCOGERLA DE NUEVO");
 				}
-			}
+			
 			}
 			else {
 				error = new ErrorDisplay("LLENE TODO LOS CAMPOS");

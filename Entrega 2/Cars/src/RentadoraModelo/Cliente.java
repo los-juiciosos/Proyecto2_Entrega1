@@ -8,6 +8,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Image;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
+
 
 public class Cliente extends Usuario {
 	
@@ -117,7 +128,38 @@ public class Cliente extends Usuario {
 			e.printStackTrace();
 			return null;
 		}
+		
+		
 	}	
+	
+	public void generarPdf(String idReserva,String placa, String sedeActual,String nombre) {
+		try {
+			File folder = new File("./facturas/");
+			folder.mkdirs();
+            PdfWriter writer = new PdfWriter("./facturas/"+idReserva+"-EntregaVehiculo.pdf");
+            PdfDocument pdf = new PdfDocument(writer);
+            Document document = new Document(pdf);
+
+            document.add(new Paragraph("========================FACTURA=========================="));
+            document.add(new Paragraph("Nombre de la persona que lo devuelve: "+ nombre));
+            document.add(new Paragraph("id de la Reserva: "+ idReserva));
+            document.add(new Paragraph("carro devuelto: " + placa));
+            document.add(new Paragraph("Sede en la que se devolvió "+ sedeActual));
+            document.add(new Paragraph("Este documento es valido para cualquier reclamo"));
+            document.add(new Paragraph("Firma del Administrador General:"));
+            
+            String imagePath = "./imagenes/firma.png";
+            Image img = new Image(ImageDataFactory.create(imagePath));
+            document.add(img);
+
+            document.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+	}
 		
 	public String entregarVehiculo(String idReserva,String placa, String sedeActual) {
 		
@@ -155,7 +197,7 @@ public class Cliente extends Usuario {
 		guardarLogin(pUsuario,"Login");
 		guardarLogin(pAlquiler,"Alquiler");
 		guardarLogin(pVehiculo,"Vehiculo");
-		
+		generarPdf(idReserva,placa,sedeActual,listaUsuario[1]);
 		
 		return "si";
 		}
