@@ -199,13 +199,16 @@ public class HacerReserva extends JPanel implements MetodosAuxiliares, ActionLis
 					Principal.porcentaje = "30";
 					Principal.estadoTarjeta = verifyTarjeta;
 					Principal.devolverPago = "hacerReserva";
-					
+					Principal.pasarelaActual = (String) metodoPago.getSelectedItem();
 					RealizarPago pago = new RealizarPago();
+					
+					estado.setText("Pago? ...... "+principal.estadoTransaccion);
 					
 				}
 				else if (Principal.estadoTransaccion == true) {
 					reservaSeleccionado.setTarifa();
-					
+					principal.estadoTransaccion = false;
+					estado.setText("Pago? ...... "+principal.estadoTransaccion);
 					principal.cargaArchivos.cargarTarReserva(reservaSeleccionado, cliente);
 					String mensaje = "";
 					mensaje += "=======================CARACTERISTICAS RESERVA ============================\n";

@@ -48,6 +48,7 @@ import RentadoraModelo.Sede;
 
 public class Principal extends JFrame implements EventListener {
 	
+	public static String pasarelaActual;
 	public static String devolverPago;
 	public static boolean estadoTransaccion;
 	public static boolean estadoTarjeta;

@@ -1,1 +1,3 @@
 PayPal="";
+PayU="";
+ApplePay="";

@@ -1,8 +1,12 @@
 package RentadoraModelo;
 
+import java.io.IOException;
+
+import javax.swing.JTextField;
+
 public class Pagos {
 	
-	public MetodoTransaccion pasarela;
+	private MetodoTransaccion pasarela;
 	private double monto;
 	private String cuenta;
 	private String transaccion;
@@ -12,12 +16,29 @@ public class Pagos {
 	//Constructor 
 	
 	
-	public Pagos(String pasarela, double monto, String cuenta) {
+	public Pagos(String pasarela, double monto, String cuenta,boolean estado) {
 		super();
-		
-		
 		this.monto = monto;
 		this.cuenta = cuenta;
+		this.estado = estado;
+		//Instanciacion dinamica
+		
+		try {
+			
+			Class clase = Class.forName("RentadoraModelo."+pasarela);
+			this.pasarela = (MetodoTransaccion) clase.getDeclaredConstructor(null).newInstance(null);
+			
+			
+		}
+		catch (ClassNotFoundException e)
+		{
+		System.out.println("No existe la clase " + pasarela);
+		}
+		catch (Exception e)
+		{
+		System.out.println("Hubo otro error construyendo la agenda telefónica: " + e.getMessage());
+		e.printStackTrace();
+		}
 	}
 	
 	//Getters y Setters
@@ -52,6 +73,9 @@ public class Pagos {
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}	
-		
+	
+	public void generarFactura(String pasarelita) {
+		pasarela.generarFactura(cuenta, monto, pasarelita);
+	}
 
 }
