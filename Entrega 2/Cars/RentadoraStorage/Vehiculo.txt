@@ -1,11 +1,10 @@
 #
-#Sun Dec 10 15:11:38 COT 2023
+#Sun Dec 10 22:59:44 COT 2023
 AEW123=AEW123;chevrolet;aveo;gris;automatica;corriente;5;true;false;RadiatorSpring;suv
 FUC109=FUC109;renault;twingo;gris;automatica;electrico;5;false;true;Emeryville;suv
-YXW111=YXW111;yamaha;native;azul;automatica;gasolina;5;true;true;RadiatorSpring;todoterreno
 LAA743=LAA743;kia;contemporaneo;rosa;manual;gasolina;8;false;true;CarburetorCanyon;tractor
 PRT712=PRT712;fresky;rock;violeta;manual;gasolina;5;false;true;CarburetorCanyon;todoterreno
 WOT712=WOT712;foton;trend;rosa;manual;gasolina;8;false;true;RadiatorSpring;lujo
 WXY000=WXY000;tesla;yamaha;gris;automatica;electrico;5;false;true;Emeryville;lujo
 WXY001=WXY001;kia;strong;negra;automatica;electrico;8;false;true;Emeryville;vans
-YXW111=YXW111;yamaha;native;azul;automatica;gasolina;5;false;true;RadiatorSpring;todoterreno
+YXW111=YXW111;yamaha;native;azul;automatica;gasolina;5;false;false;RadiatorSpring;todoterreno

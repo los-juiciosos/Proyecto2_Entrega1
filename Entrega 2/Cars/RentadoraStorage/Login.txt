@@ -1,5 +1,5 @@
 #
-#Sun Dec 10 22:28:10 COT 2023
+#Sun Dec 10 22:59:44 COT 2023
 DocHudson=Cadillac_supremacy;Hudson;1925/01/26;EstadosUnidos;0258654;https\://static.wikia.nocookie.net/el-mundo-de-cars/images/6/61/Fab_Hudson_Hornet.png/revision/latest/scale-to-width/360?cb\=20230623021532&path-prefix\=es;general
 Guido=A_los_pits;Guido;1/10/1995;Italia;307167;314262728;README.md;pits@yahoo.com;Credito;0218312;12/10/2026;123;10239123;Italia;13/10/2030;Proceso de Pago.pdf;true;cliente
 Mate=To_mate_sin_el_to;Mate;1957/01/12;EstadosUnidos;014785;mate.jpg;RadiatorSpring;true;local
