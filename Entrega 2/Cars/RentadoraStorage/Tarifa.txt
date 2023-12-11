@@ -4,3 +4,7 @@ todoterreno=80000
 vans=60000
 tractor=40000
 suv=30000
+moto=15000
+bicicleta=10000
+atv=8000
+patineta=5000

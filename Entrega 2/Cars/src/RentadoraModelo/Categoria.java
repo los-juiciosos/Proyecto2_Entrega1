@@ -47,8 +47,28 @@ public class Categoria
 			categoriaRecursive3.setMejorCategoria(categoriaRecursive3);
 			this.mejorCategoria = categoriaRecursive3;
 		}
-		else if (categoriaActual.getNombre().equals("tractor")) {
+		else if (categoriaActual.getNombre().equals("moto")) {
 			Categoria categoriaRecursive4 = new Categoria("vans");
+			categoriaRecursive4.setMejorCategoria(categoriaRecursive4);
+			this.mejorCategoria = categoriaRecursive4;
+		}
+		else if (categoriaActual.getNombre().equals("bicicleta")) {
+			Categoria categoriaRecursive4 = new Categoria("moto");
+			categoriaRecursive4.setMejorCategoria(categoriaRecursive4);
+			this.mejorCategoria = categoriaRecursive4;
+		}
+		else if (categoriaActual.getNombre().equals("atv")) {
+			Categoria categoriaRecursive4 = new Categoria("bicicleta");
+			categoriaRecursive4.setMejorCategoria(categoriaRecursive4);
+			this.mejorCategoria = categoriaRecursive4;
+		}
+		else if (categoriaActual.getNombre().equals("patineta")) {
+			Categoria categoriaRecursive4 = new Categoria("atv");
+			categoriaRecursive4.setMejorCategoria(categoriaRecursive4);
+			this.mejorCategoria = categoriaRecursive4;
+		}
+		else if (categoriaActual.getNombre().equals("tractor")) {
+			Categoria categoriaRecursive4 = new Categoria("patineta");
 			categoriaRecursive4.setMejorCategoria(categoriaRecursive4);
 			this.mejorCategoria = categoriaRecursive4;
 		}

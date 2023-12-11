@@ -1,5 +1,5 @@
 #
-#Sun Dec 10 18:14:41 COT 2023
+#Sun Dec 10 22:40:16 COT 2023
 AEW123=AEW123;chevrolet;aveo;gris;automatica;corriente;5;true;false;RadiatorSpring;suv
 AOD043=AOD043;ford;fusion;magenta;automatica;electrico;4;false;true;Emeryville;clasico
 EQR485=EQR485;renault;duster;negro;manual;gasolina;5;false;true;RadiatorSpring;vans
@@ -18,4 +18,7 @@ URN739=URN739;ferrari;huracan;rojo;automatico;gasolina;4;false;true;MotorSpeedwa
 WOT712=WOT712;foton;trend;rosa;manual;gasolina;8;false;true;RadiatorSpring;lujo
 WXY000=WXY000;tesla;yamaha;gris;automatica;electrico;5;false;true;Emeryville;lujo
 WXY001=WXY001;kia;strong;negra;automatica;electrico;8;false;true;Emeryville;vans
-YXW111=YXW111;yamaha;native;azul;automatica;gasolina;5;false;true;RadiatorSpring;todoterreno
+YBS102=YAA111;yamaha;native;azul;automatica;gasolina;5;false;true;RadiatorSpring;moto
+YJQ103=YBS121;yamaha;N/A;azul;N/A;N/A;0;false;true;RadiatorSpring;bicicleta
+YXW111=YJQ131;suzuki;N/A;roja;N/A;N/A;0;false;true;RadiatorSpring;atv
+YZA101=YLL141;skatiers;N/A;purpura;N/A;N/A;0;false;true;RadiatorSpring;patineta
