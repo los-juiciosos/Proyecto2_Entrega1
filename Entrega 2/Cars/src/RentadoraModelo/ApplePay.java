@@ -11,16 +11,16 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
 
-public class PayPal extends MetodoTransaccion{
+public class ApplePay extends MetodoTransaccion{
 
-	public PayPal(){
+	public ApplePay(){
 		
 	}
 	
 	@Override
 	public boolean cobrar(String numeroCuenta) {
 		
-		if (numeroCuenta.contains("8")) {
+		if (numeroCuenta.contains("6")) {
 			return true;
 		}
 		else {
@@ -35,7 +35,7 @@ public class PayPal extends MetodoTransaccion{
 		try {
 			File folder = new File("./facturas/");
 			folder.mkdirs();
-            PdfWriter writer = new PdfWriter("./facturas/facturasPaypal-"+numeroCuenta + ".pdf");
+            PdfWriter writer = new PdfWriter("./facturas/facturasApplePay-"+numeroCuenta + ".pdf");
             PdfDocument pdf = new PdfDocument(writer);
             Document document = new Document(pdf);
 
@@ -47,7 +47,6 @@ public class PayPal extends MetodoTransaccion{
             document.close();
             
             guardarTxt(numeroCuenta,monto,pasarela);
-            
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

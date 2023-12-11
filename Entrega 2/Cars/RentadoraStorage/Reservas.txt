@@ -1,11 +1,5 @@
-#uwu
-#Sun Dec 10 15:43:56 COT 2023
-8Guido=04/10/2023;18\:00;05/10/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
-5Guido=17/07/2023;18\:00;19/07/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
-6Guido=06/09/2023;18\:00;11/09/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
-7Guido=24/12/2023;18\:00;30/12/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
-8Guido=04/10/2023;18\:00;05/10/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
-9Guido=05/08/2023;18\:00;20/08/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
+#
+#Sun Dec 10 22:28:11 COT 2023
 10Guido=09/08/2023;18\:00;15/08/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
 11Guido=09/08/2023;18\:00;15/08/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
 12Guido=09/08/2023;18\:00;15/08/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
@@ -13,11 +7,10 @@
 14Guido=11/02/2023;18\:00;29/02/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
 15Guido=16/02/2023;18\:00;25/02/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
 16Guido=16/02/2023;18\:00;25/02/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
-1Guido=12/10/2022;13\:00;13/10/2022;14\:00;YXW111;RadiatorSpring;RadiatorSpring
-2Guido=12/10/2022;13\:00;13/10/2022;14\:00;YXW111;RadiatorSpring;RadiatorSpring
-3Guido=10/07/2023;18\:00;27/07/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
-4Guido=13/07/2023;18\:00;15/07/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
-5Guido=17/07/2023;18\:00;19/07/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
+1Guido=12/10/2022;11\:00;13/10/2022;12\:00;YXW111;RadiatorSpring;RadiatorSpring
+2Guido=12/10/2022;11\:00;13/10/2022;12\:00;YXW111;RadiatorSpring;RadiatorSpring
+4Guido=12/10/2022;11\:00;13/10/2022;12\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
+5Guido=12/10/2022;11\:00;13/10/2022;12\:00;YXW111;RadiatorSpring;RadiatorSpring;168000.0
 6Guido=06/09/2023;18\:00;11/09/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
 7Guido=24/12/2023;18\:00;30/12/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
 8Guido=04/10/2023;18\:00;05/10/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0

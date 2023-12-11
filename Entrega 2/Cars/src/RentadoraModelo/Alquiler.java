@@ -63,7 +63,7 @@ public class Alquiler {
 		
 		Properties pAlquiler = new Properties();
 		Properties pReserva = new Properties();
-		Properties pUsuario = new Properties();
+		
 		try {
 			pAlquiler.load(new FileInputStream(new File("./RentadoraStorage/Alquiler.txt")));
 			String registroAlquiler = String.join(";",infoAlquiler);
@@ -74,14 +74,6 @@ public class Alquiler {
 			pReserva.load(new FileInputStream(new File("./RentadoraStorage/Reservas.txt")));
 			pReserva.remove(idReserva);
 			guardarLogin(pReserva,"Reservas");
-			
-			pUsuario.load(new FileInputStream(new File("./RentadoraStorage/Login.txt")));
-			String infoUsuario = (String) pUsuario.get(nombre);
-			String[] listaUsuario = infoUsuario.split(";");
-			listaUsuario[16] = "false";
-			String infoUpdated = String.join(";", listaUsuario);
-			pUsuario.put(nombre, infoUpdated);
-			guardarLogin(pUsuario,"Login");
 			
 			
 		}

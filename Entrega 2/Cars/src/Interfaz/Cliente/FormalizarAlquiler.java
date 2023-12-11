@@ -20,12 +20,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Interfaz.Pagos.RealizarPago;
 import Interfaz.Principal.ErrorDisplay;
 import Interfaz.Principal.MetodosAuxiliares;
 import Interfaz.Principal.Notificacion;
 import Interfaz.Principal.Principal;
 import Interfaz.Principal.Verify;
 import RentadoraModelo.Alquiler;
+import RentadoraModelo.MetodoTransaccion;
+import RentadoraModelo.Pagos;
 
 public class FormalizarAlquiler extends JPanel implements MetodosAuxiliares, ActionListener{
 	
@@ -39,12 +42,15 @@ public class FormalizarAlquiler extends JPanel implements MetodosAuxiliares, Act
 	private JComboBox<String> seguros;
 	private JButton confirmar;
 	private GridBagConstraints gbc;
+	private JLabel pagar;
 	static final int textFieldSize = 20;
 	static final int YSpace = 5;
 	private ErrorDisplay error;
 	private Verify verificador = new Verify();
 	private Notificacion notify;
 	private JButton volver;
+	private JButton trans;
+	private JComboBox metodoPago;
 	
 	public FormalizarAlquiler(Principal principal) {
 		
@@ -95,10 +101,34 @@ public class FormalizarAlquiler extends JPanel implements MetodosAuxiliares, Act
         add(seguros,gbc);
         gbc.gridy++;
         
+        pagar = new JLabel("Pago? ..... "+ Principal.estadoTransaccion);
+		subTitleText(pagar);
+		add(pagar, gbc);
+		gbc.gridy++;
+		addSpace(YSpace);
+		
+		ArrayList<String> todosPagos = principal.cargaArchivos.cargarPagos();
+        
+		metodoPago = new JComboBox<>();
+		for (String paguito: todosPagos) {
+        metodoPago.addItem(paguito);
+		}
+		add(metodoPago,gbc);
+		addSpace(YSpace);
+		
+		
+		trans = new JButton("PAGAR");
+		trans.setActionCommand("PAGAR");
+		trans.addActionListener(this);
+		formatButton(trans);
+		add(trans, gbc);
+		addSpace(YSpace);
+        
         addSpace(YSpace*4);
         add(confirmar, gbc);
         gbc.gridy++;
-        
+   
+		
         volver = new JButton("VOLVER");
 		volver.setActionCommand("VOLVER");
 		volver.addActionListener(this);
@@ -134,6 +164,7 @@ public class FormalizarAlquiler extends JPanel implements MetodosAuxiliares, Act
 		for (String seguro: principal.cargaArchivos.cargarListaSeguros()) {
 			seguros.addItem(seguro);
 		}
+	     
 		
 		confirmar = new JButton("confirmar");
 		formatButton(confirmar);
@@ -158,14 +189,30 @@ public class FormalizarAlquiler extends JPanel implements MetodosAuxiliares, Act
 			principal.cambiarPanel("menuCliente");
 		}
 		
+		
 		else if(verifyIdValida == false) {
 			error = new ErrorDisplay("NO EXISTE UNA RESERVA A ESE NOMBRE EN ESTA SEDE");
 		}
+		
+		else if (grito.equals("nuevosConductores")){
+			cantidadConductores += 1;
+			principal.cambiarPanel(grito);				
+		}
+		else if (grito.equals("cambiarReserva")) {
+			principal.cambiarPanel(grito);
+		}
+		
 		else {
 			principal.idReservaActual = idReserva.getText();
 
 			
-			if (grito.equals("menuCliente")) {
+			if (grito.equals("menuCliente")|| grito.equals("PAGAR")) {
+				
+				
+				
+				if (principal.estadoTransaccion == true) {
+				
+				
 				String seguro =  (String) seguros.getSelectedItem();
 				ArrayList<Object> listaAlquiler = principal.cargaArchivos.cargarAlquiler(principal.idReservaActual,seguro,cantidadConductores);
 				Alquiler alquilerActual = (Alquiler) listaAlquiler.get(1);
@@ -173,7 +220,6 @@ public class FormalizarAlquiler extends JPanel implements MetodosAuxiliares, Act
 				alquilerActual.formalizarAlquiler((String[])listaAlquiler.get(0),idReserva.getText(),principal.usernameActual);
 				
 				String mensaje = "";
-				mensaje += "Precio Final a Pagar: " + alquilerActual.getPrecioTarifa()+"\n";
 				mensaje += "Pagando restante del 30% abonado... \n";
 				mensaje += "Pago realizado con exito, su tarjeta quedo deshabilitada, hasta que devuelva el vehiculo \n";
 				mensaje += "PORFAVOR RECUERDE LA PLACA DE SU CARRO PARA ENTREGARLO \n";
@@ -181,19 +227,40 @@ public class FormalizarAlquiler extends JPanel implements MetodosAuxiliares, Act
 				
 				notify = new Notificacion(mensaje);
 				principal.cambiarPanel(grito);
+				
+				}
+				
+				else if (grito.equals("PAGAR")) {
+					String seguro =  (String) seguros.getSelectedItem();
+					ArrayList<Object> listaAlquiler = principal.cargaArchivos.cargarAlquiler(principal.idReservaActual,seguro,cantidadConductores);
+					Alquiler alquilerActual = (Alquiler) listaAlquiler.get(1);
+					
+					Double cobro70 = 0.7* Double.parseDouble(alquilerActual.getPrecioTarifa());
+					Principal.precioActual = cobro70;
+					Principal.porcentaje = "70";
+					Principal.devolverPago = "formalizarAlquiler";
+					Principal.pasarelaActual = (String) metodoPago.getSelectedItem();
+					RealizarPago pago = new RealizarPago();
+					Pagos paguito = new Pagos(Principal.pasarelaActual,Principal.precioActual,"192139",Principal.estadoTarjeta);
+					MetodoTransaccion metodoTransaccion = paguito.getMetodo();
+					
+					if (Principal.estadoTransaccion == true) {
+						metodoTransaccion.bloquearTarjeta(Principal.usernameActual);
+					}		
+					
+					pagar.setText("Pago? ...... "+principal.estadoTransaccion);
+				}
+				
+				else {
+					error = new ErrorDisplay("NO HAS PAGADO!!!!!!!!!!!");
+				}
 			}
-			else if (grito.equals("nuevosConductores")){
-				cantidadConductores += 1;
-				principal.cambiarPanel(grito);				
-			}
-			else if (grito.equals("cambiarReserva")) {
-				principal.cambiarPanel(grito);
-			}
+			
 		}
 		
-		
-		
 	}
+		
+	
 	
 	@Override
     protected void paintComponent(Graphics g) {
