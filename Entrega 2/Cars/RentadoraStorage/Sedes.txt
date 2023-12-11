@@ -1,0 +1,4 @@
+RadiatorSpring=RadiatorSpring;cra7#21-42;7:00;19:00
+CarburetorCanyon=CarburetorCanyon;cra80#41-29;8:00;20:00
+Emeryville=Emeryville;cra12#12-13;7:00;17:00
+MotorSpeedway=MotorSpeedway;cra1#79-42;11:00;22:00  
