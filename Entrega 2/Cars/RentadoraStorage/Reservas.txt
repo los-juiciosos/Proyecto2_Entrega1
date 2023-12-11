@@ -13,6 +13,7 @@
 4Guido=12/10/2022;11\:00;13/10/2022;12\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
 5Guido=12/10/2022;11\:00;13/10/2022;12\:00;YXW111;RadiatorSpring;RadiatorSpring;168000.0
 6Guido=06/09/2023;18\:00;11/09/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
+3Guido=10/07/2023;18\:00;27/07/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
 7Guido=24/12/2023;18\:00;30/12/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
-8Guido=04/10/2023;18\:00;05/10/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
-9Guido=05/08/2023;18\:00;20/08/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
+16Guido=16/02/2023;18\:00;25/02/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
+10Guido=09/08/2023;18\:00;15/08/2023;18\:00;YXW111;RadiatorSpring;RadiatorSpring;408000.0
